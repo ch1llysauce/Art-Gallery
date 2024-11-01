@@ -152,33 +152,57 @@ nav .fa{
 
 }
 
-
-/*Courses*/
-
-.course-container, .seallogo-container, .cta-section::before{
-    column-count: 2; /* Sets number of columns */
-    gap: 500px; /* Space between columns */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-color: rgb(179, 63, 63);
-    background: 
-        linear-gradient(to bottom, black, white 90%)
-        linear-gradient(to top, black, white 10%);
-        position: relative;
-    background-size: cover;
-    margin: 0px;
-    padding: 10px;
-    border: none;
+/* Style for the dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
 }
-.course{
-    width: 80%;
-    margin: auto;
-    text-align:  center;
-    gap: 30px;
+
+/* Hide the dropdown content by default */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top: 10px;
+}
+
+.dropdown-content.show {
+    display: block; /* Show when class 'show' is added */
+}
+
+/* Style for the dropdown items */
+.dropdown-content li {
+    padding: 12px 16px;
+}
+
+.dropdown-content li a {
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content li a:hover {
+    background-color: #ddd;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four equal columns */
+    gap: 50px; /* Adjust this value to control the gap between columns */
+    padding: 20px;
+    background-color: rgb(179, 63, 63); /* Background color */
+    color: white;
+}
+
+.column {
+    background-color: rgb(202, 59, 59);
+    color: black;
+    padding: 20px;
+    border-radius: 4px;
+    text-align: center;
 }
 
 .course p{

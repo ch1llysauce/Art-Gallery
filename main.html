@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Chill's 3d Art Gallery </title>
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -16,6 +17,25 @@
 
     <section id="top" class="header">
         <nav>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="#top">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#about" class="dropdown-btn" onclick="myDropDown(this)">Art Classifications
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                        <ul class="dropdown-content">
+                            <li><a href="#painting">Interior Designs</a></li>
+                            <li><a href="#sculpture">Environmental Art</a></li>
+                            <li><a href="#photography">Donuts!</a></li>
+                            <li><a href="#miscellaneous">Miscellaneous</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#program">Timeline</a></li>
+                </ul>
+
+            </div>
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
 
@@ -31,198 +51,6 @@
         </div>
 
     </section>
-
-    <!--Courses-->
-
-    <div id="program" class="course-container">
-        <section class="course">
-            <h1>Programs We Offer</h1>
-            <p style="font-weight: 400; color: white;">
-                We believe that our programs offer a comprehensive and well-rounded education that will prepare our
-                students for the challenges of the future.
-            </p>
-            <div class="row">
-                <div class="course-col">
-                    <h3>SHS Academic Tracks</h3>
-                    <p>
-                        STEM
-                        <br>HUMSS
-                        <br>ABM
-                    </p>
-                </div>
-                <div class="course-col">
-                    <h3>Undergraduate Programs</h3>
-                    <p>
-                        College of Engineering and Architecture
-                        <br>College of Computer Studies
-                    </p>
-                </div>
-                <div class="course-col">
-                    <h3>Graduate Programs</h3>
-                    <p>
-                        Doctorate Degrees
-                        <br>Master's Degrees
-                        <br>Professional Science Master's (PSM) Degrees
-                    </p>
-                </div>
-            </div>
-    </div>
-    </section>
-
-    <!--About UAT-->
-    <div id="about" class="about-container">
-        <section class="about">
-            <h1 style="color: black;">About U.A.T</h1>
-            <p>
-                Founded in 1970, the University of Aurum Technology (UAT) began as a pioneering institution focused on
-                harnessing the power of emerging technologies. Established during a time of rapid advancement in
-                computing and engineering, the university aimed to provide a cutting-edge education that bridged the gap
-                between theoretical knowledge and practical application.
-
-                <br><br>From its humble beginnings with a single building and a small cohort of dedicated students, UAT
-                has grown into a world-class institution, offering a wide range of programs in engineering, information
-                technology, business, and sciences. In the early years, UAT became renowned for its forward-thinking
-                approach to education, emphasizing hands-on learning, research collaboration, and innovation. <br><br>By
-                the 1990s, UAT was at the forefront of the digital revolution, with its graduates making significant
-                contributions to both local and global industries.
-
-                <br><br>Over the years, the university expanded its facilities, invested in state-of-the-art
-                laboratories, and fostered partnerships with major corporations and research institutions. <br><br>In
-                the 2000s, UAT embraced the rise of AI, robotics, and cybersecurity, offering new programs to meet the
-                demands of the ever-evolving tech landscape. Today, the University of Aurum Technology stands as a
-                leader in technological education, research, and innovation. With a diverse student body, renowned
-                faculty, and a commitment to shaping the future, UAT continues to inspire the next generation of
-                thinkers, innovators, and leaders
-
-            </p>
-            <div class="row">
-                <div class="about-col">
-                    <img src="" alt="">
-                </div>
-            </div>
-            <a href="#top" class="return-to-top">
-                <h6>Return to the Top</h6>
-            </a>
-    </div>
-    </section>
-
-    <!--Seal and Logo-->
-
-    <div class="seallogo-container">
-        <section class="seal">
-            <h1>About the Seal and Logo</h1>
-            <div class="row">
-                <div class="seal-col">
-                    <img
-                        src="https://raw.githubusercontent.com/ch1llysauce/university/refs/heads/main-2/University%20of%20Aurum%20Technology/images/Seal%20University.png">
-                    <div>
-                        <h3>The U.A.T Seal</h3>
-                        <p>
-                            Representing the rich heritage and its focus on academic excellence, technology, and
-                            innovation. The passion of pursuing knowledge, while maintaining a steadfast commitment to
-                            nurturing both intellect and creativity. <br><br>Embodying global perspective and its
-                            commitment to equipping students for the international stage. The slightly darker gold and
-                            red hues lend the seal a sense of authority and tradition, representing the university’s
-                            stability and timeless values.
-                        </p>
-                    </div>
-                </div>
-                <div class="logo-col">
-                    <img
-                        src="https://raw.githubusercontent.com/ch1llysauce/university/refs/heads/main-2/University%20of%20Aurum%20Technology/images/Logo.png">
-                    <div>
-                        <h3>The U.A.T Logo</h3>
-                        <p>
-                            The logo embodies the core values, with the golden retriever standing proudly in the center,
-                            showcasing loyalty, wisdom, and forward-thinking. Its circular frame signifies continuity
-                            and the university’s enduring commitment to growth and innovation in the technological and
-                            academic world.
-                            <br><br>The overall palette showcases a bright gold that shines brightly, symbolizing
-                            excellence and achievement. The university’s use of gold also reflects the name of the
-                            university ‘Aurum’ which came from the periodic table of element ‘Au’ that derives from the
-                            Latin aurum, for Aurora, the goddess of dawn.
-                            <br><br>It further represents the idea of transformation - just as gold is forged and
-                            refined, students at the U.A.T are molded into future leaders in the fields of science and
-                            technology.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </div>
-
-
-    <!--Vision and Mission-->
-    <div class="visionmission-container">
-        <section class="vam">
-            <h1 style="color: black;">Vision and Mission</h1>
-            <div class="row">
-                <div class="vision-col">
-                    <div>
-                        <h3>Vision</h3>
-                        <p>
-                            To be a globally recognized university that inspires innovation, promotes leadership, and
-                            nurtures a community of compassionate and ethical individuals.
-                        </p>
-                    </div>
-                </div>
-                <div class="mission-col">
-                    <div>
-                        <h3>Mission</h3>
-                        <p>
-                            The University of Aurum Technology aims to provide a transformative educational experience
-                            that allows students to develop their knowledge, skills, intellectual competence, and
-                            character in a rapidly changing world.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </div>
-    <!--Call to Action-->
-    <div class="cta-section">
-        <section class="cta">
-            <h1>Enroll Now!</h1>
-            <a href="" class="hero-btn">CONTACT US</a>
-        </section>
-    </div>
-
-    <!--Footer-->
-    <div id="contact" class="lower-container">
-        <section class="footer">
-            <h4>University of Aurum Technology</h4>
-            <p>Made by CS21S3</p>
-            <h5>Street Address</h5>
-            <p>
-                1387 Quezon Avenue 1100, Quezon City
-                <br><i class="fa fa-address-book"></i> (+63) 3733252-4114593
-                <br>Philippines
-            </p>
-            <h5>Email Address</h5>
-            <p>
-                uat_Official@uat.edu.ph
-            </p>
-            <h5>Follow Us On</h5>
-            <div class="icons">
-                <i class="fa fa-facebook"></i>
-                <i class="fa fa-twitter"></i>
-                <i class="fa fa-instagram"></i>
-                <i class="fa fa-linkedin"></i>
-                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" target="_blank">
-                    <i class="fa fa-youtube"></i>
-                </a>
-            </div>
-            <a href="#top" class="return-to-top">
-                <h6 style="margin-top: 40px;">Return to the Top</h6>
-            </a>
-    </div>
-
-
-    </section>
-
-
     <!--JAVA SCRIPT-->
     <script src="script.js"></script>
 
