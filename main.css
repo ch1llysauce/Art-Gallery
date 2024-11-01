@@ -1,0 +1,453 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+.header{
+    min-height: 100vh;
+    width: 100%;
+    background-image: 
+        linear-gradient(
+            rgba(4, 9, 30, 0.7), 
+            rgba(4, 9, 30, 0.7), 
+            #000000 90%
+        ),
+        url('https://scontent.xx.fbcdn.net/v/t1.15752-9/459163115_1685717485544894_2996375280863272006_n.png?_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_eui2=AeGOOTTgo74vEto63TDLobRY-XocXpV9kOb5ehxelX2Q5rR7SOTgb6i_-tvvp9mHsqrLbm4ZJJdtd1PLdzif_C4c&_nc_ohc=Ziy69O-KFQwQ7kNvgGlHGAG&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&_nc_gid=AfUsHGjSceFYmilqeH3s6JZ&oh=03_Q7cD1QGNlxMDHqU1MSNL3Vfj5FfgP4tmJ8jhBviyRqtfvO-eJg&oe=67177722');
+    background-position: center;
+    background-size:  cover;
+    position: relative;
+    border: none;
+}
+
+nav{
+    display: flex;
+    padding: 2% 6%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav img{
+    width: 400px;
+}
+
+.nav-links{
+    flex: 1;
+    text-align: right;
+}
+
+.nav-links ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+
+.nav-links ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    text-shadow: 2px 2px 2px black;
+}
+
+/*Hover Effect*/
+.nav-links ul li::after{
+    content:'';
+    width: 0%;
+    height: 2px;
+    background: #ffdf76;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+
+.nav-links ul li:hover::after{
+    width: 100%;
+}
+/*Hover Effect End*/
+
+/*First Content*/
+.text-box{
+    width: 90%;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+}
+
+.text-box h1{
+    font-size: 30px;
+} 
+
+.text-box p{
+    margin: 10px 0 40px;
+    font-size: 14px;
+    color: #fff;
+}
+
+
+.hero-btn{
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+.hero-btn:hover{
+    border: 1px solid #ffdf76;
+    background: #ffdf76;
+    color: black;
+    transition: 1s;
+}
+
+nav .fa{
+    display: none;
+}
+
+@media(max-width: 700px){
+    .text-box h1{
+        font-size: 20px;
+    }
+    .nav-links ul li{
+        display:block;
+    }
+    .nav-links{
+        position: absolute;
+        background: #64604c;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 2;
+        transition: right 1s;
+    
+    }
+    nav .fa{
+        display: block;
+        color: #fff;
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+    .nav-links ul{
+        padding: 30px;
+
+    }
+
+}
+
+
+/*Courses*/
+
+.course-container, .seallogo-container, .cta-section::before{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: black;
+    background: 
+        linear-gradient(to bottom, black, white 90%)
+        linear-gradient(to top, black, white 10%);
+        position: relative;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+.course{
+    width: 80%;
+    margin: auto;
+    text-align:  center;
+    padding: 100px;
+}
+
+.course p{
+    font-size: 17px;
+    color: white;
+}
+h1{
+    font-size: 36px;
+    font-weight: 600;
+    color: white;
+}
+
+p{
+    color: #000000;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+}
+
+.row{
+    margin: 5%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.course-col {
+    flex-basis: 31%;
+    background: transparent; 
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.5); 
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+}
+h3{
+    text-align: center;
+    font-weight: 600;
+    margin: 10px 0;
+    color: rgb(255, 255, 255);
+
+}
+
+.course-col:hover{
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2)
+}
+
+@media(max-width: 700px){
+    .row{
+        flex-direction: column;
+    }
+}
+
+
+/*About UAT*/
+
+.about-container, .visionmission-container, .lower-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.about, .seallogo {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 3px;
+}
+.seal-col h3, .logo-col h3{
+    font-size: 30px;
+    color: white;
+
+}
+.about p, .seal-col p, .logo-col p{
+    font-size: 15px;
+}
+
+.seallogo-container {
+    min-height: 100vh; /* Ensures full height for the second container */
+}
+
+
+.seal{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.seal-col{
+    flex-basis: 44%;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.seal-col img{
+    width: 50%
+}
+
+.seal-col p{
+    padding: 0;
+    text-align: justify;
+    color: white;
+}
+
+
+.logo-col{
+    flex-basis: 44%;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-col img{
+    width: 50%
+}
+
+.logo-col p{
+    padding: 0;
+    text-align: justify;
+    color: white;
+}
+
+
+/*Vision and Mission*/
+.vam{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.vision-col{
+    flex-basis: 44%;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    text-align: left;
+    background: #fff3f3;
+    padding: 25px;
+    cursor: pointer;
+    display: flex;
+}
+
+.vision-col p{
+    padding: 0;
+    text-align: justify;
+    color: black;
+}
+
+.vision-col h3{
+    margin-top: 0;
+    color: black;
+}
+
+
+.mission-col{
+    flex-basis: 44%;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    text-align: left;
+    background: #fff3f3;
+    padding: 25px;
+    cursor: pointer;
+    display: flex;
+}
+
+.mission-col p{
+    padding: 0;
+    text-align: justify;
+}
+
+.mission-col h3{
+    color: black;
+    margin-top: 0px;
+}
+
+
+/*Call to Action*/
+
+.cta{
+    margin: 100px auto;
+    width: 80%;
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(https://media.istockphoto.com/id/1458164457/photo/businessman-using-laptop-and-smartphone-with-contact-icons-on-virtual-screen-searching-web.jpg?s=612x612&w=0&k=20&c=MGgwv8LPiylmsFqbT2w2lfY2qTpBmnprS9O3oMjkkS8=);
+    background-position: center;
+    background-size: cover;
+    border-radius: cover;
+    border-radius: 10px;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.cta h1{
+    color: #fff;
+    margin-bottom: 40px;
+    padding: 0;
+}
+
+@media(max-width: 700px){
+    .cta h1{
+        font-size: 24px;
+    }
+}
+
+/*Footer*/
+
+.footer{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    padding: 30px 0;
+    
+}
+
+.footer p{
+    font-size: 17px;
+}
+
+.footer h4{
+    margin-bottom: 0px;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.footer h5{
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.icons .fa{
+    color: #f49236;
+    margin: 0 13px;
+    cursor: pointer;
+    padding: 18px 0;
+}
+
+.return-to-top {
+    text-decoration: none; 
+    color: black; 
+    font-weight: normal; 
+    font-size: 14px; 
+    display: block; 
+    margin-top: 40px; 
+    text-align: center;
+    padding: 10px 0;
+    transition: color 0.3s ease-in-out; 
+}
+
+/* Add hover effect */
+.return-to-top:hover {
+    color: #7e6923; 
+}
+
+h6{
+    font-size: 30px;
+}
+
+a {
+    color: inherit; 
+}
+
