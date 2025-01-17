@@ -4,6 +4,19 @@ import renderImage1 from './1st Render/blenderrender.png';
 import renderImage2 from './2nd/donut.png';
 import renderImage3 from './3rd/interior2.jpg';
 import renderImage4 from './4th/interior2.jpg';
+import renderImage5 from './5th/0270.png';
+import renderImage6 from './6th_other planet/1/1_00000.png';
+import renderImage7 from './7th_Aurora/final_aurora.png';
+import renderImage8 from './8th_Earth/1800.png';
+import renderImage9 from './9th_toilet/official render.png';
+import renderImage10 from './10th_2nd donut/finaldonut.png';
+import renderImage11 from './11th_runic/official portal render.png';
+import renderImage12 from './12th/0420.png';
+import renderImage13 from './13th_int/official render.png';
+import renderImage14 from './14th_cubes/official render.png';
+import renderImage15 from './15th/0807.png';
+import renderImage16 from './16th/0051.png';
+import renderImage17 from './17th/1250.png';
 
 function App() {
   const [activeSection, setActiveSection] = useState(null);
@@ -62,20 +75,27 @@ function App() {
         <div id="interior" className="art-section genre-title">
           <h2>Interior Designs</h2>
           <div className="image-container">
-          <a href="https://www.google.com">
-            <img className="interior-image1" src={renderImage1} alt = "Blender Render"/>
-          </a>
+            <a href="https://www.google.com">
+              <img className="interior-image1" src={renderImage1} alt="Blender Render" />
+            </a>
 
-          <a href="https://www.google.com">
-            <img className="interior-image2" src={renderImage3} alt = "Blender Render"/>
-          </a>
+            <a href="https://www.google.com">
+              <img className="interior-image2" src={renderImage3} alt="Blender Render" />
+            </a>
           </div>
 
-          <div className = "belowimage-container">
-          <a href="https://www.google.com">
-            <img className="interior-image3" src={renderImage4} alt = "Blender Render"/>
-          </a>
+          <div className="belowimage-container">
+            <a href="https://www.google.com">
+              <img className="interior-image3" src={renderImage4} alt="Blender Render" />
+            </a>
 
+            <a href="https://www.google.com">
+              <img className="interior-image4" src={renderImage9} alt="Blender Render" />
+            </a>
+
+            <a href="https://www.google.com">
+              <img className="interior-image5" src={renderImage13} alt="Blender Render" />
+            </a>
           </div>
         </div>
       )}
@@ -83,23 +103,75 @@ function App() {
       {activeSection === "environment" && (
         <div id="environment" className="art-section genre-title">
           <h2>Environment Art</h2>
-          <img src="environment-design1.jpg" alt="Environmental Design 1" />
+          <div className="image-container">
+            <a href="https://www.google.com">
+              <img className="environment-image1" src={renderImage5} alt="Environmental Design 1" />
+            </a>
+
+            <a href="https://www.google.com">
+              <img className="environment-image2" src={renderImage6} alt="Environmental Design 1" />
+            </a>
+          </div>
+
+          <div className="belowimage-container">
+            <a href="https://www.google.com">
+              <img className="environment-image3" src={renderImage7} alt="Environmental Design 1" />
+            </a>
+
+            <a href="https://www.google.com">
+              <img className="environment-image4" src={renderImage11} alt="Environmental Design 1" />
+            </a>
+
+            <a href="https://www.google.com">
+              <img className="environment-image5" src={renderImage12} alt="Environmental Design 1" />
+            </a>
+          </div>
+
+          <div className="belowimage-container2">
+            <a href="https://www.google.com">
+              <img className="environment-image6" src={renderImage15} alt="Environmental Design 1" />
+            </a>
+          </div>
         </div>
       )}
 
       {activeSection === "donuts" && (
         <div id="donuts" className="art-section genre-title">
           <h2>Donuts!</h2>
-          <a href="https://www.google.com">
-            <img src={renderImage2} alt = "Blender Render"/>
-          </a>
+          <div className="image-container">
+            <a href="https://www.google.com">
+              <img className="donut-image1" src={renderImage2} alt="Blender Render" />
+            </a>
+
+            <a href="https://www.google.com">
+              <img className="donut-image2" src={renderImage10} alt="Blender Render" />
+            </a>
+          </div>
         </div>
       )}
 
       {activeSection === "miscellaneous" && (
         <div id="miscellaneous" className="art-section genre-title">
           <h2>Miscellaneous</h2>
-          <img src="miscellaneous-design1.jpg" alt="Miscellaneous Design 1" />
+          <div className="image-container">
+            <a href="https://www.google.com">
+              <img className="misc-image1" src={renderImage8} alt="Misc 1" />
+            </a>
+
+            <a href="https://www.google.com">
+              <img className="misc-image2" src={renderImage14} alt="Misc 1" />
+            </a>
+
+            <a href="https://www.google.com">
+              <img className="misc-image3" src={renderImage16} alt="Misc 1" />
+            </a>
+          </div>
+
+          <div className="belowimage-container">
+            <a href="https://www.google.com">
+              <img className="misc-image4" src={renderImage17} alt="Environmental Design 1" />
+            </a>
+          </div>
         </div>
       )}
     </div>

@@ -104,7 +104,22 @@ nav {
 }
 
 .interior-image1,
-.interior-image2 {
+.interior-image2,
+.interior-image3,
+.interior-image4,
+.interior-image5,
+.environment-image1,
+.environment-image2,
+.environment-image3,
+.environment-image4,
+.environment-image5,
+.environment-image6,
+.donut-image1,
+.donut-image2,
+.misc-image1,
+.misc-image2,
+.misc-image3,
+.misc-image4 {
     width: 100%;
     height: auto;
     max-height: 1000px;
@@ -116,17 +131,15 @@ nav {
 .belowimage-container {
     display: flex;
     gap: 20px;
-    justify-content: flex-start;
+    justify-content: center;
     width: 100%;
 }
 
-.interior-image3 {
-    width: 48%;
-    height: auto;
-    max-height: 1000px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s ease-in-out;
+.belowimage-container2 {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
 }
 
 /* Hover Effect */
@@ -135,11 +148,67 @@ nav {
 }
 
 .interior-image2:hover {
-    box-shadow: 0 0 15px 5px rgb(34, 193, 195);
+    box-shadow: 0 0 15px 5px rgb(23, 170, 133);
 }
 
 .interior-image3:hover {
-    box-shadow: 0 0 15px 5px rgb(255, 215, 0);
+    box-shadow: 0 0 15px 5px rgb(245, 245, 220);
+}
+
+.interior-image4:hover {
+    box-shadow: 0 0 15px 5px rgb(48, 140, 245);
+}
+
+.interior-image5:hover {
+    box-shadow: 0 0 15px 5px rgb(62, 86, 223);
+}
+
+.environment-image1:hover {
+    box-shadow: 0 0 15px 5px rgb(107, 208, 255);
+}
+
+.environment-image2:hover{
+    box-shadow: 0 0 15px 5px rgb(235, 189, 38);
+}
+
+.environment-image3:hover{
+    box-shadow: 0 0 15px 5px rgb(47, 235, 10);
+}
+
+.environment-image4:hover{
+    box-shadow: 0 0 15px 5px rgb(130, 44, 243);
+}
+
+.environment-image5:hover{
+    box-shadow: 0 0 15px 5px rgb(85, 250, 209);
+}
+
+.environment-image6:hover{
+    box-shadow: 0 0 15px 5px rgb(4, 48, 73);
+}
+
+.donut-image1:hover{
+    box-shadow: 0 0 15px 5px rgb(90, 72, 60);
+}
+
+.donut-image2:hover{
+    box-shadow: 0 0 15px 5px rgb(9, 238, 226);
+}
+
+.misc-image1:hover{
+    box-shadow: 0 0 15px 5px rgb(2, 113, 240);
+}
+
+.misc-image2:hover{
+    box-shadow: 0 0 15px 5px rgb(153, 2, 240);
+}
+
+.misc-image3:hover{
+    box-shadow: 0 0 15px 5px rgb(0, 110, 255);
+}
+
+.misc-image4:hover{
+    box-shadow: 0 0 15px 5px rgb(255, 160, 160);
 }
 
 /* Responsive Adjustments */
@@ -156,9 +225,24 @@ nav {
     .image-container{
         flex-direction: column;
     }
+    
     .interior-image1,
     .interior-image2,
-    .interior-image3 {
+    .interior-image3,
+    .interior-image4,
+    .interior-image5,
+    .environment-image1,
+    .environment-image2,
+    .environment-image3,
+    .environment-image4,
+    .environment-image5,
+    .environment-image6,
+    .donut-image1,
+    .donut-image2,
+    .misc-image1,
+    .misc-image2,
+    .misc-image3,
+    .misc-image4{
         width: 100%;
     }
 }
