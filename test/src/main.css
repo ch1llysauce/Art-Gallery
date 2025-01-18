@@ -108,18 +108,24 @@ nav {
 .interior-image3,
 .interior-image4,
 .interior-image5,
+.interior-image6,
 .environment-image1,
 .environment-image2,
 .environment-image3,
 .environment-image4,
 .environment-image5,
 .environment-image6,
+.environment-image7,
+.environment-image8,
 .donut-image1,
 .donut-image2,
+.donut-image3,
 .misc-image1,
 .misc-image2,
 .misc-image3,
-.misc-image4 {
+.misc-image4,
+.misc-image5,
+.misc-image6 {
     width: 100%;
     height: auto;
     max-height: 1000px;
@@ -136,6 +142,13 @@ nav {
 }
 
 .belowimage-container2 {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}
+
+.belowimage-container3 {
     display: flex;
     gap: 20px;
     justify-content: center;
@@ -163,6 +176,10 @@ nav {
     box-shadow: 0 0 15px 5px rgb(62, 86, 223);
 }
 
+.interior-image6:hover {
+    box-shadow: 0 0 15px 5px rgb(109, 34, 230);
+}
+
 .environment-image1:hover {
     box-shadow: 0 0 15px 5px rgb(107, 208, 255);
 }
@@ -187,12 +204,24 @@ nav {
     box-shadow: 0 0 15px 5px rgb(4, 48, 73);
 }
 
+.environment-image7:hover{
+    box-shadow: 0 0 15px 5px rgb(219, 217, 60);
+}
+
+.environment-image8:hover{
+    box-shadow: 0 0 15px 5px rgb(48, 172, 255);
+}
+
 .donut-image1:hover{
     box-shadow: 0 0 15px 5px rgb(90, 72, 60);
 }
 
 .donut-image2:hover{
     box-shadow: 0 0 15px 5px rgb(9, 238, 226);
+}
+
+.donut-image3:hover{
+    box-shadow: 0 0 15px 5px rgb(83, 46, 24);
 }
 
 .misc-image1:hover{
@@ -211,6 +240,14 @@ nav {
     box-shadow: 0 0 15px 5px rgb(255, 160, 160);
 }
 
+.misc-image5:hover{
+    box-shadow: 0 0 15px 5px rgb(87, 105, 21);
+}
+
+.misc-image6:hover{
+    box-shadow: 0 0 15px 5px rgb(172, 172, 172);
+}
+
 /* Responsive Adjustments */
 @media(max-width: 768px) {
     .button {
@@ -226,23 +263,30 @@ nav {
         flex-direction: column;
     }
     
+    
     .interior-image1,
     .interior-image2,
     .interior-image3,
     .interior-image4,
     .interior-image5,
+    .interior-image6,
     .environment-image1,
     .environment-image2,
     .environment-image3,
     .environment-image4,
     .environment-image5,
     .environment-image6,
+    .environment-image7,
+    .environment-image8,
     .donut-image1,
     .donut-image2,
+    .donut-image3,
     .misc-image1,
     .misc-image2,
     .misc-image3,
-    .misc-image4{
+    .misc-image4,
+    .misc-image5,
+    .misc-image6 {
         width: 100%;
     }
 }
