@@ -31,8 +31,9 @@ function App() {
     setActiveSection(sectionId);
   };
 
+
   useEffect(() => {
-    const timer = setTimeout(() => {
+      const timer = setTimeout(() => {
       document.querySelectorAll('.image-container, .belowimage-container').forEach((row) => {
         if (row.children.length === 1) {
           row.classList.add('single');
@@ -91,6 +92,13 @@ return (
       </nav>
     </section>
 
+    {!activeSection && (
+  <div className="default-heading">
+    <h2>Select a category above to view Chill's 3D creations!</h2>
+    <p>Interior, environments, donuts, or just some fun renders — take your pick!</p>
+  </div>
+)}
+
     {/* Art and Display Section */}
     {activeSection === "interior" && (
       <div id="interior" className="art-section genre-title">
@@ -111,7 +119,7 @@ return (
           </a>
 
           <a href="https://www.google.com">
-            <img className="interior-image4" src={renderImage9} alt="Blender Render" />
+            <img className="interior-image4" src={renderImage9} alt="Blender Render"/>
           </a>
 
           <a href="https://www.google.com">
