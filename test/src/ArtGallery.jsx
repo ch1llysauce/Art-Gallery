@@ -55,10 +55,30 @@ import video12 from './22nd/video.mp4';
 import renderImage23 from './23rd_phone/lockscreen.png';
 
 function App() {
+
   const [activeSection, setActiveSection] = useState(null);
+
+  const [zoomedImage, setZoomedImage] = useState(null);
+
+  const [zoomedVideo, setZoomedVideo] = useState(null);
+
+  const [fadeKey, setFadeKey] = useState(0);
 
   const handleNavClick = (sectionId) => {
     setActiveSection(sectionId);
+    setFadeKey(prev => prev + 1);
+  };
+
+  const handleVideoClick = (src) => {
+    setZoomedVideo(src);
+  };
+  const handleImageClick = (src) => {
+    setZoomedImage(src);
+  };
+
+  const closeZoom = () => {
+    setZoomedImage(null);
+    setZoomedVideo(null);
   };
 
   useEffect(() => {
@@ -74,22 +94,6 @@ function App() {
 
     return () => clearTimeout(timer); // Cleanup the timeout
   }, [activeSection]);
-
-  const [zoomedImage, setZoomedImage] = useState(null);
-
-  const [zoomedVideo, setZoomedVideo] = useState(null);
-
-  const handleVideoClick = (src) => {
-    setZoomedVideo(src);
-  };
-  const handleImageClick = (src) => {
-    setZoomedImage(src);
-  };
-
-  const closeZoom = () => {
-    setZoomedImage(null);
-    setZoomedVideo(null);
-  };
 
   return (
     <div>
@@ -145,7 +149,7 @@ function App() {
 
       {/* Art and Display Section */}
       {activeSection === "interior" && (
-        <div id="interior" className="art-section genre-title">
+        <div key={fadeKey} id="interior" className={`art-section genre-title fade-in`}>
           <h2>Interior Designs</h2>
           <div className="image-container">
             <div>
@@ -202,7 +206,7 @@ function App() {
       )}
 
       {activeSection === "environment" && (
-        <div id="environment" className="art-section genre-title">
+        <div key={fadeKey} id="environment" className={`art-section genre-title fade-in`}>
           <h2>Environment Art</h2>
           <div className="image-container">
             <div>
@@ -272,7 +276,7 @@ function App() {
       )}
 
       {activeSection === "donuts" && (
-        <div id="donuts" className="art-section genre-title">
+        <div key={fadeKey} id="donuts" className={`art-section genre-title fade-in`}>
           <h2>Donuts!</h2>
           <div className="image-container">
             <div>
@@ -300,7 +304,7 @@ function App() {
       )}
 
       {activeSection === "miscellaneous" && (
-        <div id="miscellaneous" className="art-section genre-title">
+        <div key={fadeKey} id="miscellaneous" className={`art-section genre-title fade-in`}>
           <h2>Miscellaneous</h2>
           <div className="image-container">
             <div>

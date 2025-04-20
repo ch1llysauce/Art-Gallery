@@ -8,14 +8,15 @@
     font-family: 'Poppins', sans-serif;
 }
 
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
     background-color: #000000;
     min-height: 100vh;
     overflow-x: hidden;
-  }
-  
+}
+
 
 /* Header Section */
 .header {
@@ -61,18 +62,18 @@ nav {
     text-align: center;
     margin-top: 2rem;
     color: #000000;
-  }
-  
-  .default-heading h2 {
+}
+
+.default-heading h2 {
     font-size: 2rem;
-  }
-  
-  .default-heading p {
+}
+
+.default-heading p {
     font-size: 1.2rem;
     color: #666;
-  }
+}
 
-  
+
 .button {
     border: 2px solid white;
     background: transparent;
@@ -156,7 +157,7 @@ nav {
 
 .image-container img {
     width: 100%;
-    object-fit: cover; 
+    object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -185,7 +186,7 @@ nav {
 
 /* Hover Effect */
 .interior-image1:hover {
-    box-shadow: 0 0 15px 5px rgb(7, 117, 243); 
+    box-shadow: 0 0 15px 5px rgb(7, 117, 243);
 
 }
 
@@ -213,89 +214,109 @@ nav {
     box-shadow: 0 0 15px 5px rgb(107, 208, 255);
 }
 
-.environment-image2:hover{
+.environment-image2:hover {
     box-shadow: 0 0 15px 5px rgb(235, 189, 38);
 }
 
-.environment-image3:hover{
+.environment-image3:hover {
     box-shadow: 0 0 15px 5px rgb(47, 235, 10);
 }
 
-.environment-image4:hover{
+.environment-image4:hover {
     box-shadow: 0 0 15px 5px rgb(130, 44, 243);
 }
 
-.environment-image5:hover{
+.environment-image5:hover {
     box-shadow: 0 0 15px 5px rgb(85, 250, 209);
 }
 
-.environment-image6:hover{
+.environment-image6:hover {
     box-shadow: 0 0 15px 5px rgb(4, 48, 73);
 }
 
-.environment-image7:hover{
+.environment-image7:hover {
     box-shadow: 0 0 15px 5px rgb(219, 217, 60);
 }
 
-.environment-image8:hover{
+.environment-image8:hover {
     box-shadow: 0 0 15px 5px rgb(48, 172, 255);
 }
 
-.donut-image1:hover{
+.donut-image1:hover {
     box-shadow: 0 0 15px 5px rgb(90, 72, 60);
 }
 
-.donut-image2:hover{
+.donut-image2:hover {
     box-shadow: 0 0 15px 5px rgb(9, 238, 226);
 }
 
-.donut-image3:hover{
+.donut-image3:hover {
     box-shadow: 0 0 15px 5px rgb(83, 46, 24);
 }
 
-.misc-image1:hover{
+.misc-image1:hover {
     box-shadow: 0 0 15px 5px rgb(2, 113, 240);
 }
 
-.misc-image2:hover{
+.misc-image2:hover {
     box-shadow: 0 0 15px 5px rgb(153, 2, 240);
 }
 
-.misc-image3:hover{
+.misc-image3:hover {
     box-shadow: 0 0 15px 5px rgb(0, 110, 255);
 }
 
-.misc-image4:hover{
+.misc-image4:hover {
     box-shadow: 0 0 15px 5px rgb(255, 160, 160);
 }
 
-.misc-image5:hover{
+.misc-image5:hover {
     box-shadow: 0 0 15px 5px rgb(87, 105, 21);
 }
 
-.misc-image6:hover{
+.misc-image6:hover {
     box-shadow: 0 0 15px 5px rgb(172, 172, 172);
 }
 
-  
-  .zoomed-image {
-    max-width: 90%;
-    max-height: 90%;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    animation: zoomIn 0.3s ease;
-  }
 
-  .zoomed-video {
+/* main.css */
+.fade-ingenres {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInGenres {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.zoomed-image {
     max-width: 90%;
     max-height: 90%;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     animation: zoomIn 0.3s ease;
-  }
-  
-  
-  .close-button {
+}
+
+.zoomed-video {
+    max-width: 90%;
+    max-height: 90%;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    animation: zoomIn 0.3s ease;
+}
+
+
+.close-button {
     position: absolute;
     top: 2rem;
     right: 2rem;
@@ -303,29 +324,42 @@ nav {
     color: white;
     cursor: pointer;
     z-index: 1001;
-  }
-  
-  @keyframes zoomIn {
-    from {
-      transform: scale(0.9);
-      opacity: 0.5;
-    }
-    to {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-  
-  @keyframes fadeIn {
-    from {
-      background-color: rgba(10, 10, 10, 0);
-    }
-    to {
-      background-color: rgba(146, 146, 146, 0.158);
-    }
-  }
+    
+}
 
-  .zoom-overlay {
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0.5;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        background-color: rgba(10, 10, 10, 0);
+    }
+
+    to {
+        background-color: rgba(146, 146, 146, 0.158);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        background-color: rgba(146, 146, 146, 0.158);
+    }
+
+    to {
+        background-color: rgba(10, 10, 10, 0);
+    }
+}
+
+.zoom-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -338,8 +372,8 @@ nav {
     justify-content: center;
     z-index: 1000;
     animation: fadeIn 0.3s ease;
-  }
-  
+}
+
 /* Responsive Adjustments */
 @media(max-width: 768px) {
     .button {
@@ -351,11 +385,11 @@ nav {
         font-size: 2rem;
     }
 
-    .image-container{
+    .image-container {
         flex-direction: column;
     }
-    
-    
+
+
     .interior-image1,
     .interior-image2,
     .interior-image3,
