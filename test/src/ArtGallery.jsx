@@ -62,7 +62,11 @@ function App() {
 
   const [zoomedVideo, setZoomedVideo] = useState(null);
 
-  const [fadeKey, setFadeKey] = useState(0);
+  const [isClosingZoom, setIsClosingZoom] = useState(false);
+
+  const [fadeKey, setFadeKey] = useState(null);
+
+  const [showTopButton, setShowTopButton] = useState(false);
 
   const handleNavClick = (sectionId) => {
     setActiveSection(sectionId);
@@ -77,8 +81,13 @@ function App() {
   };
 
   const closeZoom = () => {
-    setZoomedImage(null);
-    setZoomedVideo(null);
+    setIsClosingZoom(true);
+
+    setTimeout(() => {
+      setZoomedImage(null);
+      setZoomedVideo(null);
+      setIsClosingZoom(false);
+    }, 300);
   };
 
   useEffect(() => {
@@ -94,6 +103,16 @@ function App() {
 
     return () => clearTimeout(timer); // Cleanup the timeout
   }, [activeSection]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowTopButton(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
 
   return (
     <div>
@@ -199,7 +218,7 @@ function App() {
                 src={renderImage22}
                 alt="Blender Render"
                 onClick={() => handleVideoClick(video12)}
-                style={{ width: '80%' }} />
+                style={{ width: '60%' }} />
             </div>
           </div>
         </div>
@@ -217,59 +236,59 @@ function App() {
             </div>
 
             <div>
-              <img className="environment-image2" 
-              src={renderImage6} 
-              alt="Environmental Design 1" 
-              onClick={() => handleImageClick(renderImage6)} />
+              <img className="environment-image2"
+                src={renderImage6}
+                alt="Environmental Design 1"
+                onClick={() => handleImageClick(renderImage6)} />
             </div>
           </div>
 
           <div className="belowimage-container">
             <div>
-              <img className="environment-image3" 
-              src={renderImage7} 
-              alt="Environmental Design 1" 
-              onClick={() => handleImageClick(renderImage7)}/>
+              <img className="environment-image3"
+                src={renderImage7}
+                alt="Environmental Design 1"
+                onClick={() => handleImageClick(renderImage7)} />
             </div>
 
             <div>
-              <img className="environment-image4" 
-              src={renderImage11} 
-              alt="Environmental Design 1" 
-              onClick={() => handleImageClick(renderImage11)}/>
+              <img className="environment-image4"
+                src={renderImage11}
+                alt="Environmental Design 1"
+                onClick={() => handleImageClick(renderImage11)} />
             </div>
 
             <div>
-              <img className="environment-image5" 
-              src={renderImage12} 
-              alt="Environmental Design 1" 
-              onClick={() => handleVideoClick(video5)}/>
+              <img className="environment-image5"
+                src={renderImage12}
+                alt="Environmental Design 1"
+                onClick={() => handleVideoClick(video5)} />
             </div>
           </div>
 
           <div className="belowimage-container2">
             <div>
-              <img className="environment-image6" 
-              src={renderImage15} 
-              alt="Environmental Design 1" 
-              onClick={() => handleVideoClick(video6)}/>
+              <img className="environment-image6"
+                src={renderImage15}
+                alt="Environmental Design 1"
+                onClick={() => handleVideoClick(video6)} />
             </div>
 
             <div>
-              <img className="environment-image7" 
-              src={renderImage18} 
-              alt="Environmental Design 1" 
-              onClick={() => handleImageClick(renderImage18)}/>
+              <img className="environment-image7"
+                src={renderImage18}
+                alt="Environmental Design 1"
+                onClick={() => handleImageClick(renderImage18)} />
             </div>
           </div>
 
           <div className="belowimage-container3">
             <div>
-              <img className="environment-image8" 
-              src={renderImage19} 
-              alt="Environmental Design 1" 
-              onClick={() => handleVideoClick(video9)}
-              style={{ width: '80%' }} />
+              <img className="environment-image8"
+                src={renderImage19}
+                alt="Environmental Design 1"
+                onClick={() => handleVideoClick(video9)}
+                style={{ width: '60%' }} />
             </div>
           </div>
         </div>
@@ -280,24 +299,24 @@ function App() {
           <h2>Donuts!</h2>
           <div className="image-container">
             <div>
-              <img className="donut-image1" 
-              src={renderImage2}
-              alt="Environmental Design 1"
-              onClick={() => handleVideoClick(video1)} />
+              <img className="donut-image1"
+                src={renderImage2}
+                alt="Environmental Design 1"
+                onClick={() => handleVideoClick(video1)} />
             </div>
 
             <div>
-              <img className="donut-image3" 
-              src={renderImage20} 
-              alt="Blender Render" 
-              onClick={() => handleVideoClick(video10)}/>
+              <img className="donut-image3"
+                src={renderImage20}
+                alt="Blender Render"
+                onClick={() => handleVideoClick(video10)} />
             </div>
 
             <div>
-              <img className="donut-image2" 
-              src={renderImage10} 
-              alt="Blender Render" 
-              onClick={() => handleVideoClick(video4)}/>
+              <img className="donut-image2"
+                src={renderImage10}
+                alt="Blender Render"
+                onClick={() => handleVideoClick(video4)} />
             </div>
           </div>
         </div>
@@ -308,58 +327,69 @@ function App() {
           <h2>Miscellaneous</h2>
           <div className="image-container">
             <div>
-              <img className="misc-image1" 
-              src={renderImage8} 
-              alt="Misc 1" 
-              onClick={() => handleVideoClick(video3)}/>
+              <img className="misc-image1"
+                src={renderImage8}
+                alt="Misc 1"
+                onClick={() => handleVideoClick(video3)} />
             </div>
 
             <div>
-              <img className="misc-image2" 
-              src={renderImage14} 
-              alt="Misc 1"
-              onClick = {() => handleImageClick(renderImage14)} />
+              <img className="misc-image2"
+                src={renderImage14}
+                alt="Misc 1"
+                onClick={() => handleImageClick(renderImage14)} />
             </div>
 
             <div>
-              <img className="misc-image3" 
-              src={renderImage16} 
-              alt="Misc 1" 
-              onClick = {() => handleVideoClick(video7)} />
+              <img className="misc-image3"
+                src={renderImage16}
+                alt="Misc 1"
+                onClick={() => handleVideoClick(video7)} />
             </div>
           </div>
 
           <div className="belowimage-container">
             <div>
-              <img className="misc-image4" 
-              src={renderImage17} 
-              alt="Environmental Design 1" 
-              onClick = {() => handleVideoClick(video8)} />
+              <img className="misc-image4"
+                src={renderImage17}
+                alt="Environmental Design 1"
+                onClick={() => handleVideoClick(video8)} />
             </div>
 
             <div>
-              <img className="misc-image6" 
-              src={renderImage23} 
-              alt="Environmental Design 1" 
-              onClick={() => handleImageClick(renderImage23)}/>
+              <img className="misc-image6"
+                src={renderImage23}
+                alt="Environmental Design 1"
+                onClick={() => handleImageClick(renderImage23)} />
             </div>
 
             <div>
-              <img className="misc-image5" 
-              src={renderImage21} 
-              alt="Environmental Design 1" 
-              onClick={() => handleVideoClick(video11)}/>
+              <img className="misc-image5"
+                src={renderImage21}
+                alt="Environmental Design 1"
+                onClick={() => handleVideoClick(video11)} />
             </div>
           </div>
         </div>
       )}
+
+      <button
+        className={`back-to-top ${showTopButton ? '' : 'back-to-top-hidden'}`}
+        onClick={() => {
+          document.querySelector('.header').scrollIntoView({ behavior: 'smooth' });
+        }}
+      >
+        ⬆ Back to Top
+      </button>
+
+
 
       {zoomedImage && (
         <div className="zoom-overlay" onClick={closeZoom}>
           <img
             src={zoomedImage}
             alt="Zoomed"
-            className="zoomed-image"
+            className={`zoomed-image ${isClosingZoom ? 'fade-out' : ''}`}
             onClick={(e) => e.stopPropagation()}
           />
           <span className="close-button" onClick={closeZoom}>×</span>
@@ -371,7 +401,7 @@ function App() {
         <div className="zoom-overlay" onClick={closeZoom}>
           <video
             src={zoomedVideo}
-            className="zoomed-video"
+            className={`zoomed-video ${isClosingZoom ? 'fade-out' : ''}`}
             controls
             autoPlay
             onClick={(e) => e.stopPropagation()}
