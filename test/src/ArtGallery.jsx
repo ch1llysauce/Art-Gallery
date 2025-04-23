@@ -68,9 +68,35 @@ function App() {
 
   const [showTopButton, setShowTopButton] = useState(false);
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(prev => {
+      const next = !prev;
+      if (!next) {
+        if (document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+        }
+      }
+      return next;
+    });
+  };
+  
+
   const handleNavClick = (sectionId) => {
     setActiveSection(sectionId);
     setFadeKey(prev => prev + 1);
+    setMenuOpen(false);
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+
+    setTimeout(() => {
+      const refreshBtn = document.querySelector('.refresh-button');
+      if (refreshBtn) refreshBtn.blur();
+    }, 300);
   };
 
   const handleVideoClick = (src) => {
@@ -128,7 +154,12 @@ function App() {
 
         {/* Navigation Section */}
         <nav>
-          <div className="nav-links" id="navLinks" style={{ right: "-200px" }}>
+
+          <button className="hamburger" onClick={toggleMenu}>
+            &#9776;
+          </button>
+
+          <div className={`nav-links ${menuOpen ? 'show' : ''}`} id="navLinks">
             <ul>
               <li><button
                 className={activeSection === "interior" ? "button active" : "button"}
@@ -382,7 +413,21 @@ function App() {
         ⬆ Back to Top
       </button>
 
-
+      <button
+        className={`refresh-button ${menuOpen ? 'menu-open' : ''}`}
+        tabIndex={menuOpen ? -1 : 0}
+        onClick={() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          setTimeout(() => {
+            setActiveSection(null);
+            setZoomedImage(null);
+            setZoomedVideo(null);
+            setFadeKey(0);
+          }, 600);
+        }}
+      >
+        Refresh
+      </button>
 
       {zoomedImage && (
         <div className="zoom-overlay" onClick={closeZoom}>
