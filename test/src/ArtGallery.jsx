@@ -116,28 +116,28 @@ function App() {
   const refreshButtonRef = useRef(null);
 
   const handleRefresh = () => {
-    setIsRefreshing(true); 
-
-  setTimeout(() => {
-    if (refreshButtonRef.current) {
-      refreshButtonRef.current.blur();
-    }
-
-    setActiveSection(null); 
-    setZoomedImage(null);
-    setZoomedVideo(null);
-    setFadeKey(prev => prev + 1);
-
-    setImagesLoaded(true);
-
-    if (headerRef.current) {
-      headerRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
+    setIsRefreshing(true);
 
     setTimeout(() => {
-      setIsRefreshing(false); 
+      if (refreshButtonRef.current) {
+        refreshButtonRef.current.blur();
+      }
+
+      setActiveSection(null);
+      setZoomedImage(null);
+      setZoomedVideo(null);
+      setFadeKey(prev => prev + 1);
+
+      setImagesLoaded(true);
+
+      if (headerRef.current) {
+        headerRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      setTimeout(() => {
+        setIsRefreshing(false);
+      }, 200);
     }, 200);
-  }, 200);
   };
 
   const closeZoom = () => {
@@ -154,7 +154,7 @@ function App() {
 
   const handleImageLoad = () => {
     imagesToLoadRef.current -= 1;
-    if(imagesToLoadRef.current <= 0){
+    if (imagesToLoadRef.current <= 0) {
       setImagesLoaded(true);
     }
   };
@@ -170,7 +170,7 @@ function App() {
       });
     }, 100);
 
-    return () => clearTimeout(timer); 
+    return () => clearTimeout(timer);
   }, [activeSection]);
 
   useEffect(() => {
@@ -184,12 +184,12 @@ function App() {
 
 
   useEffect(() => {
-    if(activeSection){
+    if (activeSection) {
       const images = document.querySelectorAll(`#${activeSection} img`);
       const videos = document.querySelectorAll(`#${activeSection} video`);
       imagesToLoadRef.current = images.length + videos.length;
 
-      if(imagesToLoadRef.current === 0){
+      if (imagesToLoadRef.current === 0) {
         setImagesLoaded(true);
       }
     }
@@ -254,278 +254,278 @@ function App() {
 
       {/* Art and Display Section */}
       {activeSection === "interior" && (
-        <div key={fadeKey} 
-        id="interior" 
-        className={`art-section genre-title 
+        <div key={fadeKey}
+          id="interior"
+          className={`art-section genre-title 
         ${imagesLoaded ? 'fade-ingenres' : ''}
         ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}>
           <div className={`fade-wrapper ${imagesLoaded ? 'fade-in' : ''}`}>
-          <h2>Interior Designs</h2>
-          <div className="image-container">
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img
-                className="interior-image1"
-                src={renderImage1}
-                alt="Blender Render"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleImageClick(renderImage1)}
-              />
+            <h2>Interior Designs</h2>
+            <div className="image-container">
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img
+                  className="interior-image1"
+                  src={renderImage1}
+                  alt="Blender Render"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleImageClick(renderImage1)}
+                />
+              </div>
+
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="interior-image2"
+                  src={renderImage3}
+                  alt="Blender Render"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleImageClick(renderImage3)}
+                />
+              </div>
             </div>
 
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="interior-image2"
-                src={renderImage3}
-                alt="Blender Render"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleImageClick(renderImage3)}
-              />
+            <div className="belowimage-container">
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="interior-image3"
+                  src={renderImage4}
+                  alt="Blender Render"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleImageClick(renderImage4)} />
+              </div>
+
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="interior-image4"
+                  src={renderImage9}
+                  alt="Blender Render"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleImageClick(renderImage9)} />
+              </div>
+
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="interior-image5"
+                  src={renderImage13}
+                  alt="Blender Render"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleImageClick(renderImage13)} />
+              </div>
+            </div>
+
+            <div className="belowimage-container">
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="interior-image6"
+                  src={renderImage22}
+                  alt="Blender Render"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleVideoClick(video12)}
+                />
+              </div>
             </div>
           </div>
-
-          <div className="belowimage-container">
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="interior-image3"
-                src={renderImage4}
-                alt="Blender Render"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleImageClick(renderImage4)} />
-            </div>
-
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="interior-image4"
-                src={renderImage9}
-                alt="Blender Render"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleImageClick(renderImage9)} />
-            </div>
-
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="interior-image5"
-                src={renderImage13}
-                alt="Blender Render"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleImageClick(renderImage13)} />
-            </div>
-          </div>
-
-          <div className="belowimage-container">
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="interior-image6"
-                src={renderImage22}
-                alt="Blender Render"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleVideoClick(video12)}
-                 />
-            </div>
-          </div>
-        </div>
         </div>
       )}
 
       {activeSection === "environment" && (
-        <div key={fadeKey} 
-        id="environment" 
-        className={`art-section genre-title 
+        <div key={fadeKey}
+          id="environment"
+          className={`art-section genre-title 
         ${imagesLoaded ? 'fade-ingenres' : ''}
         ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}>
           <div className={`fade-wrapper ${imagesLoaded ? 'fade-in' : ''}`}>
-          <h2>Environment Art</h2>
-          <div className="image-container">
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="environment-image1"
-                src={renderImage5}
-                alt="Environmental Design 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleVideoClick(video2)} />
+            <h2>Environment Art</h2>
+            <div className="image-container">
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="environment-image1"
+                  src={renderImage5}
+                  alt="Environmental Design 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleVideoClick(video2)} />
+              </div>
+
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="environment-image2"
+                  src={renderImage6}
+                  alt="Environmental Design 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleImageClick(renderImage6)} />
+              </div>
             </div>
 
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="environment-image2"
-                src={renderImage6}
-                alt="Environmental Design 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleImageClick(renderImage6)} />
+            <div className="belowimage-container">
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="environment-image3"
+                  src={renderImage7}
+                  alt="Environmental Design 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleImageClick(renderImage7)} />
+              </div>
+
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="environment-image4"
+                  src={renderImage11}
+                  alt="Environmental Design 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleImageClick(renderImage11)} />
+              </div>
+
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="environment-image5"
+                  src={renderImage12}
+                  alt="Environmental Design 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleVideoClick(video5)} />
+              </div>
+            </div>
+
+            <div className="belowimage-container2">
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="environment-image6"
+                  src={renderImage15}
+                  alt="Environmental Design 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleVideoClick(video6)} />
+              </div>
+
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="environment-image7"
+                  src={renderImage18}
+                  alt="Environmental Design 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleImageClick(renderImage18)} />
+              </div>
+            </div>
+
+            <div className="belowimage-container3">
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="environment-image8"
+                  src={renderImage19}
+                  alt="Environmental Design 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleVideoClick(video9)}
+                />
+              </div>
             </div>
           </div>
-
-          <div className="belowimage-container">
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="environment-image3"
-                src={renderImage7}
-                alt="Environmental Design 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleImageClick(renderImage7)} />
-            </div>
-
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="environment-image4"
-                src={renderImage11}
-                alt="Environmental Design 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleImageClick(renderImage11)} />
-            </div>
-
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="environment-image5"
-                src={renderImage12}
-                alt="Environmental Design 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleVideoClick(video5)} />
-            </div>
-          </div>
-
-          <div className="belowimage-container2">
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="environment-image6"
-                src={renderImage15}
-                alt="Environmental Design 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleVideoClick(video6)} />
-            </div>
-
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="environment-image7"
-                src={renderImage18}
-                alt="Environmental Design 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleImageClick(renderImage18)} />
-            </div>
-          </div>
-
-          <div className="belowimage-container3">
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="environment-image8"
-                src={renderImage19}
-                alt="Environmental Design 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleVideoClick(video9)}
-                 />
-            </div>
-          </div>
-        </div>
         </div>
       )}
 
       {activeSection === "donuts" && (
-        <div key={fadeKey} 
-        id="donuts" 
-        className={`art-section genre-title 
+        <div key={fadeKey}
+          id="donuts"
+          className={`art-section genre-title 
         ${imagesLoaded ? 'fade-ingenres' : ''}
         ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}>
           <div className={`fade-wrapper ${imagesLoaded ? 'fade-in' : ''}`}>
-          <h2>Donuts!</h2>
-          <div className="image-container">
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="donut-image1"
-                src={renderImage2}
-                alt="Environmental Design 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleVideoClick(video1)} />
-            </div>
+            <h2>Donuts!</h2>
+            <div className="image-container">
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="donut-image1"
+                  src={renderImage2}
+                  alt="Environmental Design 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleVideoClick(video1)} />
+              </div>
 
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="donut-image3"
-                src={renderImage20}
-                alt="Blender Render"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleVideoClick(video10)} />
-            </div>
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="donut-image3"
+                  src={renderImage20}
+                  alt="Blender Render"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleVideoClick(video10)} />
+              </div>
 
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="donut-image2"
-                src={renderImage10}
-                alt="Blender Render"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleVideoClick(video4)} />
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="donut-image2"
+                  src={renderImage10}
+                  alt="Blender Render"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleVideoClick(video4)} />
+              </div>
             </div>
           </div>
-        </div>
         </div>
       )}
 
       {activeSection === "miscellaneous" && (
-        <div key={fadeKey} 
-        id="miscellaneous" 
-        className={`art-section genre-title 
+        <div key={fadeKey}
+          id="miscellaneous"
+          className={`art-section genre-title 
         ${imagesLoaded ? 'fade-ingenres' : ''}
         ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}>
           <div className={`fade-wrapper ${imagesLoaded ? 'fade-in' : ''}`}>
-          <h2>Miscellaneous</h2>
-          <div className="image-container">
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="misc-image1"
-                src={renderImage8}
-                alt="Misc 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleVideoClick(video3)} />
+            <h2>Miscellaneous</h2>
+            <div className="image-container">
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="misc-image1"
+                  src={renderImage8}
+                  alt="Misc 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleVideoClick(video3)} />
+              </div>
+
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="misc-image2"
+                  src={renderImage14}
+                  alt="Misc 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleImageClick(renderImage14)} />
+              </div>
+
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="misc-image3"
+                  src={renderImage16}
+                  alt="Misc 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleVideoClick(video7)} />
+              </div>
             </div>
 
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="misc-image2"
-                src={renderImage14}
-                alt="Misc 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleImageClick(renderImage14)} />
-            </div>
+            <div className="belowimage-container">
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="misc-image4"
+                  src={renderImage17}
+                  alt="Environmental Design 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleVideoClick(video8)} />
+              </div>
 
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="misc-image3"
-                src={renderImage16}
-                alt="Misc 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleVideoClick(video7)} />
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="misc-image6"
+                  src={renderImage23}
+                  alt="Environmental Design 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleImageClick(renderImage23)} />
+              </div>
+
+              <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
+                <img className="misc-image5"
+                  src={renderImage21}
+                  alt="Environmental Design 1"
+                  onLoad={handleImageLoad}
+                  onError={handleImageLoad}
+                  onClick={() => handleVideoClick(video11)} />
+              </div>
             </div>
           </div>
-
-          <div className="belowimage-container">
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="misc-image4"
-                src={renderImage17}
-                alt="Environmental Design 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleVideoClick(video8)} />
-            </div>
-
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="misc-image6"
-                src={renderImage23}
-                alt="Environmental Design 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleImageClick(renderImage23)} />
-            </div>
-
-            <div className = {`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
-              <img className="misc-image5"
-                src={renderImage21}
-                alt="Environmental Design 1"
-                onLoad={handleImageLoad}
-                onError={handleImageLoad}
-                onClick={() => handleVideoClick(video11)} />
-            </div>
-          </div>
-        </div>
         </div>
       )}
 
