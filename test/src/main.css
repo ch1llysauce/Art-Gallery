@@ -97,6 +97,13 @@ nav {
     border-radius: 10px;
     cursor: pointer;
     transition: 0.3s;
+    user-select: none;
+}
+
+.button.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    user-select: none;
 }
 
 .button:hover {
@@ -119,6 +126,7 @@ nav {
     gap: 20px;
     justify-content: flex-start;
     text-align: center;
+    user-select: none;
 }
 
 .art-section h2 {
@@ -127,6 +135,7 @@ nav {
     padding-bottom: 40px !important;
     width: 100%;
     text-align: center;
+    user-select: none;
 }
 
 .interior-image1,
@@ -213,143 +222,396 @@ nav {
     padding-bottom: 20px;
 }
 
+@keyframes interior1 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(7, 117, 243);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes interior2 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(23, 170, 133);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes interior3 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(245, 245, 220);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes interior4 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(48, 140, 245);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes interior5 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(62, 86, 223);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes interior6 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(109, 34, 230);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes environment1 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(107, 208, 255);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes environment2 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(235, 189, 38);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes environment3 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(47, 235, 10);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes environment4 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(130, 44, 243);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes environment5 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(85, 250, 209);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes environment6 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(4, 48, 73);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes environment7 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(219, 217, 60);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes environment8 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(48, 172, 255);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes donut1 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(19, 106, 141);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes donut2 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(9, 238, 226);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes donut3 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(83, 46, 24);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes misc1 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(2, 113, 240);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes misc2 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(153, 2, 240);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes misc3 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(0, 110, 255);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes misc4 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(255, 160, 160);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes misc5 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(87, 105, 21);
+        filter: brightness(1.2);
+    }
+}
+
+@keyframes misc6 {
+    0% {
+        box-shadow: 0 0 10px 3px rgb(0, 0, 0);
+        filter: brightness(1);
+    }
+
+    100% {
+        box-shadow: 0 0 15px 5px rgb(172, 172, 172);
+        filter: brightness(1.2);
+    }
+}
+
 /* Hover Effect */
 .interior-image1:hover {
-    box-shadow: 0 0 15px 5px rgb(7, 117, 243);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: interior1 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .interior-image2:hover {
-    box-shadow: 0 0 15px 5px rgb(23, 170, 133);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: interior2 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .interior-image3:hover {
-    box-shadow: 0 0 15px 5px rgb(245, 245, 220);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: interior3 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .interior-image4:hover {
-    box-shadow: 0 0 15px 5px rgb(48, 140, 245);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: interior4 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .interior-image5:hover {
-    box-shadow: 0 0 15px 5px rgb(62, 86, 223);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: interior5 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .interior-image6:hover {
-    box-shadow: 0 0 15px 5px rgb(109, 34, 230);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: interior6 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .environment-image1:hover {
-    box-shadow: 0 0 15px 5px rgb(107, 208, 255);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: environment1 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .environment-image2:hover {
-    box-shadow: 0 0 15px 5px rgb(235, 189, 38);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: environment2 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .environment-image3:hover {
-    box-shadow: 0 0 15px 5px rgb(47, 235, 10);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: environment3 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .environment-image4:hover {
-    box-shadow: 0 0 15px 5px rgb(130, 44, 243);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: environment4 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .environment-image5:hover {
-    box-shadow: 0 0 15px 5px rgb(85, 250, 209);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: environment5 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .environment-image6:hover {
-    box-shadow: 0 0 15px 5px rgb(4, 48, 73);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: environment6 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .environment-image7:hover {
-    box-shadow: 0 0 15px 5px rgb(219, 217, 60);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: environment7 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .environment-image8:hover {
-    box-shadow: 0 0 15px 5px rgb(48, 172, 255);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: environment8 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .donut-image1:hover {
-    box-shadow: 0 0 15px 5px rgb(19, 106, 141);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: donut1 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .donut-image2:hover {
-    box-shadow: 0 0 15px 5px rgb(9, 238, 226);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: donut2 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .donut-image3:hover {
-    box-shadow: 0 0 15px 5px rgb(83, 46, 24);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: donut3 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .misc-image1:hover {
-    box-shadow: 0 0 15px 5px rgb(2, 113, 240);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: misc1 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .misc-image2:hover {
-    box-shadow: 0 0 15px 5px rgb(153, 2, 240);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: misc2 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .misc-image3:hover {
-    box-shadow: 0 0 15px 5px rgb(0, 110, 255);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: misc3 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .misc-image4:hover {
-    box-shadow: 0 0 15px 5px rgb(255, 160, 160);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: misc4 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .misc-image5:hover {
-    box-shadow: 0 0 15px 5px rgb(87, 105, 21);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: misc5 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .misc-image6:hover {
-    box-shadow: 0 0 15px 5px rgb(172, 172, 172);
-    transition: box-shadow 1s ease-in-out;
-    filter: brightness(1.2);
+    animation: misc6 0.25s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .rendering.loading img,
@@ -387,8 +649,6 @@ nav {
     transform: translateY(10px);
     animation: fadeInGenres 0.6s ease forwards;
     transition: opacity 1s ease-in-out;
-    ;
-
 }
 
 .fade-ingenres .image-container img {
@@ -398,10 +658,7 @@ nav {
 
 .fade-out {
     opacity: 0;
-    transition: opacity 0.3s ease;
     transition: opacity 1s ease-in-out;
-    ;
-
 }
 
 .fade-wrapper {
@@ -596,6 +853,16 @@ nav {
 
 .hamburger {
     display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.hamburger.show {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Mobile Adjustments */
@@ -613,10 +880,17 @@ nav {
         gap: 10px;
         justify-content: flex-start;
         text-align: center;
+        user-select: none;
     }
 
     .art-section h2 {
         font-size: 2rem;
+    }
+
+    .art-section h1,
+    .art-section h2,
+    .art-section p {
+        user-select: text;
     }
 
     .intro-text h1 {
@@ -696,25 +970,44 @@ nav {
         width: 100%;
     }
 
+    .header {
+        position: relative;
+    }
+
     .hamburger {
         display: block;
         font-size: 2rem;
-        cursor: pointer;
-        color: white;
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        z-index: 1001;
-        background: none;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.5);
         border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1101 !important;
+        backdrop-filter: blur(5px);
+        visibility: visible;
+    }
+
+    @media (hover: hover) {
+        .hamburger:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+    }
+
+    .hamburger:focus {
+        outline: none;
     }
 
     /* Navigation Links */
     .nav-links {
-        display: none;
+        opacity: 0;
+        visibility: hidden;
+        display: flex;
         flex-direction: column;
         background-color: #111;
-        position: absolute;
+        position: fixed;
         top: 3.5rem;
         right: 1rem;
         width: 80%;
@@ -722,10 +1015,15 @@ nav {
         border-radius: 0.5rem;
         z-index: 1000;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        transition: opacity 0.3s ease, visibility 0s 0.3s;
+        pointer-events: all;
     }
 
     .nav-links.show {
-        display: flex;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity 0.3s ease, visibility 0s 0s;
     }
 
     .nav-links ul {
@@ -807,4 +1105,41 @@ nav {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
     }
+
+    .blur-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(8px); 
+        background-color: rgba(0, 0, 0, 0.3); 
+        z-index: 999; 
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0s 0.3s;
+        pointer-events: none;
+    }
+    
+    .blur-overlay.show {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.3s ease, visibility 0s;
+    }
+
+    .click-blocker {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5); 
+        z-index: 999;
+        display: none;
+      }
+      
+      .click-blocker.show {
+        display: block;
+      }
+
 }

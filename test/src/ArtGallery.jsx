@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './main.css'; // Import the CSS file
+import './main.css';
 
 import renderImage1 from './1st Render/blenderrender.png';
 
@@ -55,65 +55,60 @@ import video12 from './22nd/video.mp4';
 import renderImage23 from './23rd_phone/lockscreen.png';
 
 function App() {
-
   const [activeSection, setActiveSection] = useState(null);
-
   const [zoomedImage, setZoomedImage] = useState(null);
-
   const [zoomedVideo, setZoomedVideo] = useState(null);
-
   const [isClosingZoom, setIsClosingZoom] = useState(false);
-
   const [fadeKey, setFadeKey] = useState(null);
-
   const [showTopButton, setShowTopButton] = useState(false);
-
   const [menuOpen, setMenuOpen] = useState(false);
-
   const [imagesLoaded, setImagesLoaded] = useState(false);
-
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const headerRef = useRef(null);
+  const refreshButtonRef = useRef(null);
+  const imagesToLoadRef = useRef(0);
 
   const toggleMenu = () => {
-    setMenuOpen(prev => {
+    setMenuOpen((prev) => {
       const next = !prev;
-      if (!next) {
-        if (document.activeElement instanceof HTMLElement) {
-          document.activeElement.blur();
-        }
+      if (next) {
+        document.body.classList.add("blurred");
+      } else {
+        document.body.classList.remove("blurred");
       }
       return next;
     });
   };
 
-
   const handleNavClick = (sectionId) => {
-    setActiveSection(sectionId);
-    setFadeKey(prev => prev + 1);
-    setMenuOpen(false);
-    setImagesLoaded(false);
+    if (activeSection === sectionId) return;
 
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
 
     setTimeout(() => {
-      const refreshBtn = document.querySelector('.refresh-button');
-      if (refreshBtn) refreshBtn.blur();
-    }, 300);
+      setActiveSection(sectionId);
+      setFadeKey((prev) => prev + 1);
+      setMenuOpen(false);
+      setImagesLoaded(false);
+
+      setTimeout(() => {
+        const refreshBtn = document.querySelector(".refresh-button");
+        if (refreshBtn) refreshBtn.blur();
+      }, 250);
+    }, 250);
   };
 
   const handleVideoClick = (src) => {
     setZoomedVideo(src);
   };
+
   const handleImageClick = (src) => {
     setZoomedImage(src);
   };
-
-  const refreshButtonRef = useRef(null);
 
   const handleRefresh = () => {
     setIsRefreshing(true);
@@ -126,12 +121,11 @@ function App() {
       setActiveSection(null);
       setZoomedImage(null);
       setZoomedVideo(null);
-      setFadeKey(prev => prev + 1);
-
+      setFadeKey((prev) => prev + 1);
       setImagesLoaded(true);
 
       if (headerRef.current) {
-        headerRef.current.scrollIntoView({ behavior: 'smooth' });
+        headerRef.current.scrollIntoView({ behavior: "smooth" });
       }
 
       setTimeout(() => {
@@ -150,8 +144,6 @@ function App() {
     }, 300);
   };
 
-  const imagesToLoadRef = useRef(0);
-
   const handleImageLoad = () => {
     imagesToLoadRef.current -= 1;
     if (imagesToLoadRef.current <= 0) {
@@ -161,13 +153,15 @@ function App() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      document.querySelectorAll('.image-container, .belowimage-container').forEach((row) => {
-        if (row.children.length === 1) {
-          row.classList.add('single');
-        } else {
-          row.classList.remove('single');
-        }
-      });
+      document
+        .querySelectorAll(".image-container, .belowimage-container")
+        .forEach((row) => {
+          if (row.children.length === 1) {
+            row.classList.add("single");
+          } else {
+            row.classList.remove("single");
+          }
+        });
     }, 100);
 
     return () => clearTimeout(timer);
@@ -178,10 +172,9 @@ function App() {
       setShowTopButton(window.scrollY > 300);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
 
   useEffect(() => {
     if (activeSection) {
@@ -195,8 +188,112 @@ function App() {
     }
   }, [activeSection]);
 
+  useEffect(() => {
+    if (imagesLoaded) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [imagesLoaded]);
+
+  useEffect(() => {
+    const hamburgerButton = document.querySelector(".hamburger");
+    const menu = document.querySelector(".nav-links");
+    const navLinks = document.querySelectorAll(".nav-links ul li button");
+
+    const toggleMenu = () => {
+      menu.classList.toggle("show");
+      const refreshButton = document.querySelector(".refresh-button");
+      const blurOverlay = document.querySelector(".blur-overlay");
+
+      if (refreshButton) {
+        if (menu.classList.contains("show")) {
+          refreshButton.classList.add("menu-open");
+          blurOverlay?.classList.add("show");
+        } else {
+          refreshButton.classList.remove("menu-open");
+          blurOverlay?.classList.remove("show");
+        }
+      }
+    };
+
+    const closeMenu = () => {
+      menu.classList.remove("show");
+      hamburgerButton.classList.remove("active");
+      document.activeElement.blur();
+
+      const refreshButton = document.querySelector(".refresh-button");
+      const blurOverlay = document.querySelector(".blur-overlay");
+
+      if (refreshButton) {
+        refreshButton.classList.remove("menu-open");
+      }
+
+      if (blurOverlay) {
+        blurOverlay.classList.remove(".show");
+      }
+    };
+
+    const handleClickOutside = (event) => {
+      if (menu && !menu.contains(event.target) && !hamburgerButton.contains(event.target)) {
+        closeMenu();
+      }
+    };
+
+    if (hamburgerButton && menu) {
+      hamburgerButton.addEventListener("click", toggleMenu);
+      document.addEventListener("click", handleClickOutside);
+    }
+
+    navLinks.forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    return () => {
+      if (hamburgerButton) {
+        hamburgerButton.removeEventListener("click", toggleMenu);
+      }
+      navLinks.forEach((link) => {
+        link.removeEventListener("click", closeMenu);
+      });
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    const hamburgerButton = document.querySelector(".hamburger");
+
+    const handleScroll = () => {
+      hamburgerButton.style.transform = "translateY(0)";
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add("blurred");
+    } else {
+      document.body.classList.remove("blurred");
+    }
+
+    return () => {
+      document.body.classList.remove("blurred");
+    };
+  }, [menuOpen]);
+
+  const handleGenreClick = () => {
+    setMenuOpen(false);
+    document.body.classList.remove("blurred");
+  };
+
   return (
-    <div className={`website-cotainer ${isRefreshing ? 'fade-outwebsite' : 'fade-inwebsite'}`}>
+    <div>
       {/* Title and Description Section */}
       <section className="header" ref={headerRef}>
         <div className="intro-text">
@@ -209,44 +306,82 @@ function App() {
 
         {/* Navigation Section */}
         <nav>
-
           <button className="hamburger" onClick={toggleMenu}>
             &#9776;
           </button>
 
+          <div className="blur-overlay"></div> 
+
+          <div className={`click-blocker ${menuOpen ? 'show' : ''}`} onClick={(e) => e.stopPropagation()}></div>
+
           <div className={`nav-links ${menuOpen ? 'show' : ''}`} id="navLinks">
             <ul>
-              <li><button
-                className={activeSection === "interior" ? "button active" : "button"}
-                onClick={() => handleNavClick("interior")}
-              >
-                Interior Designs
-              </button></li>
-              <li><button
-                className={activeSection === "environment" ? "button active" : "button"}
-                onClick={() => handleNavClick("environment")}
-              >
-                Environmental Art
-              </button></li>
-              <li><button
-                className={activeSection === "donuts" ? "button active" : "button"}
-                onClick={() => handleNavClick("donuts")}
-              >
-                Donuts!
-              </button></li>
-              <li><button
-                className={activeSection === "miscellaneous" ? "button active" : "button"}
-                onClick={() => handleNavClick("miscellaneous")}
-              >
-                Miscellaneous
-              </button></li>
+              <li>
+                <button
+                  className={`button ${activeSection === "interior" ? "button active disabled" : ""}`}
+                  onClick={() => {
+                    if (activeSection !== "interior") {
+                      handleNavClick("interior");
+                    }
+                    handleGenreClick();
+                  }}
+                  disabled={activeSection === "interior"}
+                >
+                  Interior Designs
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`button ${activeSection === "environment" ? "button active disabled" : "button"}`}
+                  onClick={() => {
+                    if (activeSection !== "environment") {
+                      handleNavClick("environment");
+                    }
+                    handleGenreClick();
+                  }}
+                  disabled={activeSection === "environment"}
+                >
+                  Environmental Art
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`button ${activeSection === "donuts" ? "button active disabled" : "button"}`}
+                  onClick={() => {
+                    if (activeSection !== "donuts") {
+                      handleNavClick("donuts");
+                    }
+                    handleGenreClick();
+                  }}
+                  disabled={activeSection === "donuts"}
+                >
+                  Donuts!
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`button ${activeSection === "miscellaneous" ? "button active disabled" : "button"}`}
+                  onClick={() => {
+                    if (activeSection !== "miscellaneous") {
+                      handleNavClick("miscellaneous");
+                    }
+                    handleGenreClick();
+                  }}
+                  disabled={activeSection === "miscellaneous"}
+                >
+                  Miscellaneous
+                </button>
+              </li>
             </ul>
           </div>
         </nav>
       </section>
 
       {!activeSection && (
-        <div className="default-heading">
+        <div key={fadeKey}
+          id="default-heading"
+          className={`default-heading
+        ${isRefreshing ? 'fade-outwebsite' : 'fade-inwebsite'}`}>
           <h2>Select a category above to view Chill's 3D creations!</h2>
           <p>Interior, environments, donuts, or just some fun renders — take your pick!</p>
         </div>
@@ -258,7 +393,14 @@ function App() {
           id="interior"
           className={`art-section genre-title 
         ${imagesLoaded ? 'fade-ingenres' : ''}
-        ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}>
+        ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}
+          onClick={() => {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            }, 100);
+          }}
+        >
           <div className={`fade-wrapper ${imagesLoaded ? 'fade-in' : ''}`}>
             <h2>Interior Designs</h2>
             <div className="image-container">
@@ -333,7 +475,14 @@ function App() {
           id="environment"
           className={`art-section genre-title 
         ${imagesLoaded ? 'fade-ingenres' : ''}
-        ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}>
+        ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}
+          onClick={() => {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            }, 100);
+          }}
+        >
           <div className={`fade-wrapper ${imagesLoaded ? 'fade-in' : ''}`}>
             <h2>Environment Art</h2>
             <div className="image-container">
@@ -425,7 +574,14 @@ function App() {
           id="donuts"
           className={`art-section genre-title 
         ${imagesLoaded ? 'fade-ingenres' : ''}
-        ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}>
+        ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}
+          onClick={() => {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            }, 100);
+          }}
+        >
           <div className={`fade-wrapper ${imagesLoaded ? 'fade-in' : ''}`}>
             <h2>Donuts!</h2>
             <div className="image-container">
@@ -465,7 +621,14 @@ function App() {
           id="miscellaneous"
           className={`art-section genre-title 
         ${imagesLoaded ? 'fade-ingenres' : ''}
-        ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}>
+        ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}
+          onClick={() => {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            });
+          }}>
+
           <div className={`fade-wrapper ${imagesLoaded ? 'fade-in' : ''}`}>
             <h2>Miscellaneous</h2>
             <div className="image-container">
