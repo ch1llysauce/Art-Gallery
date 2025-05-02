@@ -13,8 +13,9 @@ body {
     margin: 0;
     padding: 0;
     background-color: #000000;
-    min-height: 100vh;
+    min-height: 145vh;
     overflow-x: hidden;
+
 }
 
 
@@ -865,6 +866,87 @@ nav {
     visibility: visible;
 }
 
+.footer-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    margin: 0 auto;
+    padding-top: 90px;
+  }
+  
+  .footer-text h1 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 70px;
+  }
+  
+  .software-columns {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .blender,
+  .after_effects,
+  .adobe_premiere {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 500px;
+    box-sizing: border-box;
+  }
+  
+  .blender-logo,
+  .ae-logo,
+  .ap-logo {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
+    object-fit: contain;
+  }
+  
+  .blender h2,
+  .after_effects h2,
+  .adobe_premiere h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin: 20px 0 10px;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .footer .blender p,
+  .footer .after_effects p,
+  .footer .adobe_premiere p {
+    font-size: 1.2rem;
+    color: #ccc;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .blender a,
+  .after_effects a,
+  .adobe_premiere a {
+    color: #0bc3f1;
+    transition: color 0.3s ease;
+  }
+  
+  .blender-description,
+  .ae-description,
+  .ap-description {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+
 /* Mobile Adjustments */
 @media screen and (max-width: 780px) {
     .button {
@@ -872,6 +954,7 @@ nav {
         padding: 8px 16px;
     }
 
+    
     .art-section {
         margin-bottom: 40px;
         padding: 0px 20px;
@@ -974,6 +1057,63 @@ nav {
         position: relative;
     }
 
+    .footer-text {
+        padding-top: 60px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    
+      .footer-text h1 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+      }
+    
+      .software-columns {
+        flex-direction: column;
+        gap: 30px;
+      }
+    
+      .blender,
+      .after_effects,
+      .adobe_premiere {
+        width: 100%;
+        max-width: 100%;
+      }
+    
+      .blender-logo,
+      .ae-logo,
+      .ap-logo {
+        width: 80px;
+        height: 80px;
+      }
+    
+      .ae-logo,
+      .ap-logo {
+        margin-top: 50px;
+      }
+
+      .blender h2,
+      .after_effects h2,
+      .adobe_premiere h2 {
+        font-size: 1.5rem;
+      }
+    
+      .footer .blender p,
+      .footer .after_effects p,
+      .footer .adobe_premiere p {
+        font-size: 1rem;
+      }
+    
+      .blender-description,
+      .ae-description,
+      .ap-description {
+        font-size: 1rem;
+        padding: 0 10px;
+      }
+
+      .adobe_premiere{
+        margin-bottom: 100px;
+      }
     .hamburger {
         display: block;
         font-size: 2rem;
@@ -1112,15 +1252,15 @@ nav {
         left: 0;
         width: 100%;
         height: 100%;
-        backdrop-filter: blur(8px); 
-        background-color: rgba(0, 0, 0, 0.3); 
-        z-index: 999; 
+        backdrop-filter: blur(8px);
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 999;
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease, visibility 0s 0.3s;
         pointer-events: none;
     }
-    
+
     .blur-overlay.show {
         opacity: 1;
         visibility: visible;
@@ -1133,13 +1273,17 @@ nav {
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5); 
+        background: rgba(0, 0, 0, 0.5);
         z-index: 999;
         display: none;
-      }
-      
-      .click-blocker.show {
+    }
+
+    .click-blocker.show {
         display: block;
-      }
+    }
+
+    .footer {
+        display: none;
+    }
 
 }

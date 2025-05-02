@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './main.css';
 
+import blenderlogo from './logos/Blender_logo_no_text.svg.png';
+import aftereffectslogo from './logos/after-effects-40.png';
+import premierelogo from './logos/premiere-pro-40.png';
+
 import renderImage1 from './1st Render/blenderrender.png';
 
 import video1 from './2nd/0001 60 fps.mp4';
@@ -642,15 +646,62 @@ const ArtGallery = () => {
         </div>
       )}
 
-      <section className="footer">
-        <div className="footer-text">
-          <h1>Softwares Used</h1>
+{!activeSection && (<section className= {`footer"
+${isRefreshing ? 'fade-outwebsite' : 'fade-inwebsite'}`}>
+     
+  <div className="footer-text" key={fadeKey}>
+    <h1>Softwares Used</h1>
+
+    <div className="software-columns">
+      <section className="blender">
+        <img className="blender-logo" src={blenderlogo} alt="Blender Logo" />
+        <div className="blender-description">
+          <h2>Blender</h2>
           <p>
-            Welcome to Chill's Museum, where you will witness the creativity Chill has
-            made. <br /> Browse further to witness each 3D art he has created.
+            Blender is a powerful open-source 3D creation suite. It supports the
+            entirety of the 3D pipeline, including modeling, rigging, animation,
+            simulation, rendering, compositing, and motion tracking.
+            All of the renders you see here were made using Blender.<br />
+            <a href="https://www.blender.org/" target="_blank" rel="noopener noreferrer">
+              Visit Blender's official website
+            </a>
           </p>
-          </div>
+        </div>
       </section>
+
+      <section className="after_effects">
+        <img className="ae-logo" src={aftereffectslogo} alt="AE Logo" />
+        <div className="ae-description">
+          <h2>Adobe After Effects</h2>
+          <p>
+            After Effects is a digital visual effects, motion graphics, and
+            compositing application developed by Adobe Systems. It is used to create the
+            animations and effects in the videos you see here. <br />
+            <a href="https://www.adobe.com/products/aftereffects.html" target="_blank" rel="noopener noreferrer">
+              Visit After Effects' official website
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <section className="adobe_premiere">
+        <img className="ap-logo" src={premierelogo} alt="AP Logo" />
+        <div className="ap-description">
+          <h2>Adobe Premiere Pro</h2>
+          <p>
+            Premiere Pro is a timeline-based video editing software application
+            developed by Adobe Systems. It is used to edit the videos you see here.
+            <br />
+            <a href="https://www.adobe.com/products/premiere.html" target="_blank" rel="noopener noreferrer">
+              Visit Premiere Pro's official website
+            </a>
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+)}
 
       <button
         className={`back-to-top ${showTopButton ? '' : 'back-to-top-hidden'}`}
