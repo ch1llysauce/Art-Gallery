@@ -54,7 +54,7 @@ import video12 from './22nd/video.mp4';
 
 import renderImage23 from './23rd_phone/lockscreen.png';
 
-function App() {
+const ArtGallery = () => {
   const [activeSection, setActiveSection] = useState(null);
   const [zoomedImage, setZoomedImage] = useState(null);
   const [zoomedVideo, setZoomedVideo] = useState(null);
@@ -68,26 +68,15 @@ function App() {
   const headerRef = useRef(null);
   const refreshButtonRef = useRef(null);
   const imagesToLoadRef = useRef(0);
-
-  const toggleMenu = () => {
-    setMenuOpen((prev) => {
-      const next = !prev;
-      if (next) {
-        document.body.classList.add("blurred");
-      } else {
-        document.body.classList.remove("blurred");
-      }
-      return next;
-    });
-  };
+  const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);
 
   const handleNavClick = (sectionId) => {
     if (activeSection === sectionId) return;
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (activeSection !== null) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
     setTimeout(() => {
       setActiveSection(sectionId);
@@ -97,46 +86,33 @@ function App() {
 
       setTimeout(() => {
         const refreshBtn = document.querySelector(".refresh-button");
-        if (refreshBtn) refreshBtn.blur();
+        refreshBtn?.blur();
       }, 250);
     }, 250);
   };
 
-  const handleVideoClick = (src) => {
-    setZoomedVideo(src);
-  };
-
-  const handleImageClick = (src) => {
-    setZoomedImage(src);
-  };
+  const handleVideoClick = (src) => setZoomedVideo(src);
+  const handleImageClick = (src) => setZoomedImage(src);
 
   const handleRefresh = () => {
     setIsRefreshing(true);
 
     setTimeout(() => {
-      if (refreshButtonRef.current) {
-        refreshButtonRef.current.blur();
-      }
+      refreshButtonRef.current?.blur();
 
       setActiveSection(null);
       setZoomedImage(null);
       setZoomedVideo(null);
       setFadeKey((prev) => prev + 1);
       setImagesLoaded(true);
+      headerRef.current?.scrollIntoView({ behavior: "smooth" });
 
-      if (headerRef.current) {
-        headerRef.current.scrollIntoView({ behavior: "smooth" });
-      }
-
-      setTimeout(() => {
-        setIsRefreshing(false);
-      }, 200);
+      setTimeout(() => setIsRefreshing(false), 200);
     }, 200);
   };
 
   const closeZoom = () => {
     setIsClosingZoom(true);
-
     setTimeout(() => {
       setZoomedImage(null);
       setZoomedVideo(null);
@@ -155,23 +131,14 @@ function App() {
     const timer = setTimeout(() => {
       document
         .querySelectorAll(".image-container, .belowimage-container")
-        .forEach((row) => {
-          if (row.children.length === 1) {
-            row.classList.add("single");
-          } else {
-            row.classList.remove("single");
-          }
-        });
+        .forEach((row) => row.classList.toggle("single", row.children.length === 1));
     }, 100);
 
     return () => clearTimeout(timer);
   }, [activeSection]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setShowTopButton(window.scrollY > 300);
-    };
-
+    const handleScroll = () => setShowTopButton(window.scrollY > 300);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -190,107 +157,40 @@ function App() {
 
   useEffect(() => {
     if (imagesLoaded) {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [imagesLoaded]);
 
-  useEffect(() => {
-    const hamburgerButton = document.querySelector(".hamburger");
-    const menu = document.querySelector(".nav-links");
-    const navLinks = document.querySelectorAll(".nav-links ul li button");
 
-    const toggleMenu = () => {
-      menu.classList.toggle("show");
-      const refreshButton = document.querySelector(".refresh-button");
-      const blurOverlay = document.querySelector(".blur-overlay");
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
 
-      if (refreshButton) {
-        if (menu.classList.contains("show")) {
-          refreshButton.classList.add("menu-open");
-          blurOverlay?.classList.add("show");
-        } else {
-          refreshButton.classList.remove("menu-open");
-          blurOverlay?.classList.remove("show");
-        }
-      }
-    };
 
-    const closeMenu = () => {
-      menu.classList.remove("show");
-      hamburgerButton.classList.remove("active");
-      document.activeElement.blur();
-
-      const refreshButton = document.querySelector(".refresh-button");
-      const blurOverlay = document.querySelector(".blur-overlay");
-
-      if (refreshButton) {
-        refreshButton.classList.remove("menu-open");
-      }
-
-      if (blurOverlay) {
-        blurOverlay.classList.remove(".show");
-      }
-    };
-
-    const handleClickOutside = (event) => {
-      if (menu && !menu.contains(event.target) && !hamburgerButton.contains(event.target)) {
-        closeMenu();
-      }
-    };
-
-    if (hamburgerButton && menu) {
-      hamburgerButton.addEventListener("click", toggleMenu);
-      document.addEventListener("click", handleClickOutside);
+  const handleClickOutside = (event) => {
+    if (menuOpen && menuRef.current && hamburgerRef.current && !menuRef.current.contains(event.target) && !hamburgerRef.current.contains(event.target)) {
+      setMenuOpen(false);
     }
+  };
 
-    navLinks.forEach((link) => {
-      link.addEventListener("click", closeMenu);
-    });
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
 
     return () => {
-      if (hamburgerButton) {
-        hamburgerButton.removeEventListener("click", toggleMenu);
-      }
-      navLinks.forEach((link) => {
-        link.removeEventListener("click", closeMenu);
-      });
       document.removeEventListener("click", handleClickOutside);
     };
-  }, []);
+  }, [handleClickOutside]);
+
 
   useEffect(() => {
-    const hamburgerButton = document.querySelector(".hamburger");
-
-    const handleScroll = () => {
-      hamburgerButton.style.transform = "translateY(0)";
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (menuOpen) {
-      document.body.classList.add("blurred");
-    } else {
-      document.body.classList.remove("blurred");
-    }
-
-    return () => {
-      document.body.classList.remove("blurred");
-    };
+    document.body.classList.toggle("blurred", menuOpen);
+    return () => document.body.classList.remove("blurred");
   }, [menuOpen]);
 
   const handleGenreClick = () => {
     setMenuOpen(false);
     document.body.classList.remove("blurred");
   };
+
+
 
   return (
     <div>
@@ -306,15 +206,15 @@ function App() {
 
         {/* Navigation Section */}
         <nav>
-          <button className="hamburger" onClick={toggleMenu}>
+          <button className="hamburger" ref={hamburgerRef} onClick={toggleMenu}>
             &#9776;
           </button>
 
-          <div className="blur-overlay"></div> 
+          <div className={`blur-overlay ${menuOpen ? 'show' : ''}`}></div>
 
           <div className={`click-blocker ${menuOpen ? 'show' : ''}`} onClick={(e) => e.stopPropagation()}></div>
 
-          <div className={`nav-links ${menuOpen ? 'show' : ''}`} id="navLinks">
+          <div ref={menuRef} className={`nav-links ${menuOpen ? 'show' : ''}`} id="navLinks">
             <ul>
               <li>
                 <button
@@ -394,12 +294,6 @@ function App() {
           className={`art-section genre-title 
         ${imagesLoaded ? 'fade-ingenres' : ''}
         ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}
-          onClick={() => {
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth',
-            }, 100);
-          }}
         >
           <div className={`fade-wrapper ${imagesLoaded ? 'fade-in' : ''}`}>
             <h2>Interior Designs</h2>
@@ -411,7 +305,10 @@ function App() {
                   alt="Blender Render"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleImageClick(renderImage1)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleImageClick(renderImage1)
+                  }}
                 />
               </div>
 
@@ -421,7 +318,10 @@ function App() {
                   alt="Blender Render"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleImageClick(renderImage3)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleImageClick(renderImage3);
+                  }}
                 />
               </div>
             </div>
@@ -433,7 +333,11 @@ function App() {
                   alt="Blender Render"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleImageClick(renderImage4)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleImageClick(renderImage4);
+                  }}
+                />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
@@ -442,7 +346,10 @@ function App() {
                   alt="Blender Render"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleImageClick(renderImage9)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleImageClick(renderImage9)
+                  }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
@@ -451,7 +358,11 @@ function App() {
                   alt="Blender Render"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleImageClick(renderImage13)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleImageClick(renderImage13)
+                  }}
+                />
               </div>
             </div>
 
@@ -462,7 +373,10 @@ function App() {
                   alt="Blender Render"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleVideoClick(video12)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleVideoClick(video12);
+                  }}
                 />
               </div>
             </div>
@@ -476,12 +390,7 @@ function App() {
           className={`art-section genre-title 
         ${imagesLoaded ? 'fade-ingenres' : ''}
         ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}
-          onClick={() => {
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth',
-            }, 100);
-          }}
+
         >
           <div className={`fade-wrapper ${imagesLoaded ? 'fade-in' : ''}`}>
             <h2>Environment Art</h2>
@@ -492,7 +401,10 @@ function App() {
                   alt="Environmental Design 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleVideoClick(video2)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleVideoClick(video2);
+                  }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
@@ -501,7 +413,10 @@ function App() {
                   alt="Environmental Design 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleImageClick(renderImage6)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleImageClick(renderImage6);
+                  }} />
               </div>
             </div>
 
@@ -512,7 +427,10 @@ function App() {
                   alt="Environmental Design 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleImageClick(renderImage7)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleImageClick(renderImage7);
+                  }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
@@ -521,7 +439,10 @@ function App() {
                   alt="Environmental Design 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleImageClick(renderImage11)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleImageClick(renderImage11);
+                  }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
@@ -530,7 +451,10 @@ function App() {
                   alt="Environmental Design 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleVideoClick(video5)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleVideoClick(video5);
+                  }} />
               </div>
             </div>
 
@@ -541,7 +465,10 @@ function App() {
                   alt="Environmental Design 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleVideoClick(video6)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleVideoClick(video6);
+                  }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
@@ -550,7 +477,10 @@ function App() {
                   alt="Environmental Design 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleImageClick(renderImage18)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleImageClick(renderImage18);
+                  }} />
               </div>
             </div>
 
@@ -561,7 +491,10 @@ function App() {
                   alt="Environmental Design 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleVideoClick(video9)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleVideoClick(video9)
+                  }}
                 />
               </div>
             </div>
@@ -575,12 +508,7 @@ function App() {
           className={`art-section genre-title 
         ${imagesLoaded ? 'fade-ingenres' : ''}
         ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}
-          onClick={() => {
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth',
-            }, 100);
-          }}
+
         >
           <div className={`fade-wrapper ${imagesLoaded ? 'fade-in' : ''}`}>
             <h2>Donuts!</h2>
@@ -591,7 +519,10 @@ function App() {
                   alt="Environmental Design 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleVideoClick(video1)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleVideoClick(video1);
+                  }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
@@ -600,7 +531,10 @@ function App() {
                   alt="Blender Render"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleVideoClick(video10)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleVideoClick(video10);
+                  }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
@@ -609,7 +543,10 @@ function App() {
                   alt="Blender Render"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleVideoClick(video4)} />
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    handleVideoClick(video4);
+                  }} />
               </div>
             </div>
           </div>
@@ -622,12 +559,7 @@ function App() {
           className={`art-section genre-title 
         ${imagesLoaded ? 'fade-ingenres' : ''}
         ${isRefreshing ? 'fade-out' : 'fade-ingenres'}`}
-          onClick={() => {
-            window.scrollTo({
-              top: 0,
-              behavior: 'smooth',
-            });
-          }}>
+        >
 
           <div className={`fade-wrapper ${imagesLoaded ? 'fade-in' : ''}`}>
             <h2>Miscellaneous</h2>
@@ -638,7 +570,10 @@ function App() {
                   alt="Misc 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleVideoClick(video3)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleVideoClick(video3);
+                  }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
@@ -647,7 +582,10 @@ function App() {
                   alt="Misc 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleImageClick(renderImage14)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleImageClick(renderImage14);
+                  }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
@@ -656,7 +594,10 @@ function App() {
                   alt="Misc 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleVideoClick(video7)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleVideoClick(video7);
+                  }} />
               </div>
             </div>
 
@@ -667,7 +608,10 @@ function App() {
                   alt="Environmental Design 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleVideoClick(video8)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleVideoClick(video8);
+                  }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
@@ -676,7 +620,10 @@ function App() {
                   alt="Environmental Design 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleImageClick(renderImage23)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleImageClick(renderImage23);
+                  }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
@@ -685,16 +632,31 @@ function App() {
                   alt="Environmental Design 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
-                  onClick={() => handleVideoClick(video11)} />
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleVideoClick(video11);
+                  }} />
               </div>
             </div>
           </div>
         </div>
       )}
 
+      <section className="footer">
+        <div className="footer-text">
+          <h1>Softwares Used</h1>
+          <p>
+            Welcome to Chill's Museum, where you will witness the creativity Chill has
+            made. <br /> Browse further to witness each 3D art he has created.
+          </p>
+          </div>
+      </section>
+
       <button
         className={`back-to-top ${showTopButton ? '' : 'back-to-top-hidden'}`}
-        onClick={() => {
+        onClick={(e) => {
+
+          e.stopPropagation();
           document.querySelector('.header').scrollIntoView({ behavior: 'smooth' });
         }}
       >
@@ -744,4 +706,4 @@ function App() {
 }
 
 
-export default App;
+export default ArtGallery;
