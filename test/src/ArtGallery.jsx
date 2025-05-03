@@ -68,7 +68,7 @@ const ArtGallery = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
-
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 780);
   const headerRef = useRef(null);
   const refreshButtonRef = useRef(null);
   const imagesToLoadRef = useRef(0);
@@ -194,7 +194,12 @@ const ArtGallery = () => {
     document.body.classList.remove("blurred");
   };
 
-
+  useEffect(() => {
+    const handleResize = () =>
+      setIsMobile(window.innerWidth <= 780);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div>
@@ -286,8 +291,16 @@ const ArtGallery = () => {
           id="default-heading"
           className={`default-heading
         ${isRefreshing ? 'fade-outwebsite' : 'fade-inwebsite'}`}>
-          <h2>Select a category above to view Chill's 3D creations!</h2>
-          <p>Interior, environments, donuts, or just some fun renders — take your pick!</p>
+          <h2>
+            {isMobile
+              ? "Tap the button at the upper right corner to explore Chill's 3D art!"
+              : "Select a category above to view Chill's 3D creations!"}
+          </h2>
+          <p>
+            {isMobile
+              ? "Interior, environments, donuts — tap to begin exploring."
+              : "Interior, environments, donuts, or just some fun renders — take your pick!"}
+          </p>
         </div>
       )}
 
@@ -646,63 +659,83 @@ const ArtGallery = () => {
         </div>
       )}
 
-{!activeSection && (<section className= {`footer"
-${isRefreshing ? 'fade-outwebsite' : 'fade-inwebsite'}`}>
-     
-  <div className="footer-text" key={fadeKey}>
-    <h1>Softwares Used</h1>
+      {!activeSection && (<section className={`footer"
+        ${isRefreshing ? 'fade-outwebsite' : 'fade-inwebsite'}`}>
 
-    <div className="software-columns">
-      <section className="blender">
-        <img className="blender-logo" src={blenderlogo} alt="Blender Logo" />
-        <div className="blender-description">
-          <h2>Blender</h2>
-          <p>
-            Blender is a powerful open-source 3D creation suite. It supports the
-            entirety of the 3D pipeline, including modeling, rigging, animation,
-            simulation, rendering, compositing, and motion tracking.
-            All of the renders you see here were made using Blender.<br />
-            <a href="https://www.blender.org/" target="_blank" rel="noopener noreferrer">
-              Visit Blender's official website
-            </a>
-          </p>
+        <div className="footer-text" key={fadeKey}>
+          <h1>Softwares Used</h1>
+
+          <div className="software-columns">
+            <section className="blender">
+              <img className="blender-logo" src={blenderlogo} alt="Blender Logo" />
+              <div className="blender-description">
+                <h2>Blender</h2>
+                <p>
+                  Blender is a powerful open-source 3D creation suite. It supports the
+                  entirety of the 3D pipeline, including modeling, rigging, animation,
+                  simulation, rendering, compositing, and motion tracking.
+                  All of the renders you see here were made using Blender.<br />
+                  <a href="https://www.blender.org/" target="_blank" rel="noopener noreferrer">
+                    Visit Blender's official website
+                  </a>
+                </p>
+              </div>
+            </section>
+
+            <section className="after_effects">
+              <img className="ae-logo" src={aftereffectslogo} alt="AE Logo" />
+              <div className="ae-description">
+                <h2>Adobe After Effects</h2>
+                <p>
+                  After Effects is a digital visual effects, motion graphics, and
+                  compositing application developed by Adobe Systems. It is used to create the
+                  animations and effects in the videos you see here. <br />
+                  <a href="https://www.adobe.com/products/aftereffects.html" target="_blank" rel="noopener noreferrer">
+                    Visit After Effects' official website
+                  </a>
+                </p>
+              </div>
+            </section>
+
+            <section className="adobe_premiere">
+              <img className="ap-logo" src={premierelogo} alt="AP Logo" />
+              <div className="ap-description">
+                <h2>Adobe Premiere Pro</h2>
+                <p>
+                  Premiere Pro is a timeline-based video editing software application
+                  developed by Adobe Systems. It is used to edit the videos you see here.
+                  <br />
+                  <a href="https://www.adobe.com/products/premiere.html" target="_blank" rel="noopener noreferrer">
+                    Visit Premiere Pro's official website
+                  </a>
+                </p>
+              </div>
+            </section>
+          </div>
         </div>
       </section>
+      )}
 
-      <section className="after_effects">
-        <img className="ae-logo" src={aftereffectslogo} alt="AE Logo" />
-        <div className="ae-description">
-          <h2>Adobe After Effects</h2>
-          <p>
-            After Effects is a digital visual effects, motion graphics, and
-            compositing application developed by Adobe Systems. It is used to create the
-            animations and effects in the videos you see here. <br />
-            <a href="https://www.adobe.com/products/aftereffects.html" target="_blank" rel="noopener noreferrer">
-              Visit After Effects' official website
-            </a>
-          </p>
+      {!activeSection && (<div className={`social-medias
+      ${isRefreshing ? 'fade-outwebsite' : 'fade-inwebsite'}`}>
+        <h1>Social Media</h1>
+        <div className="social-media-icons">
+          <a href="https://www.instagram.com/chilldawnn_/" target="_blank" rel="noopener noreferrer">
+            <img className="instagram-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" />
+          </a>
+
+          <a href="https://www.youtube.com/@chilly6605" target="_blank" rel="noopener noreferrer">
+            <img className="youtube-logo" src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" />
+          </a>
         </div>
-      </section>
+      </div>
+      )}
 
-      <section className="adobe_premiere">
-        <img className="ap-logo" src={premierelogo} alt="AP Logo" />
-        <div className="ap-description">
-          <h2>Adobe Premiere Pro</h2>
-          <p>
-            Premiere Pro is a timeline-based video editing software application
-            developed by Adobe Systems. It is used to edit the videos you see here.
-            <br />
-            <a href="https://www.adobe.com/products/premiere.html" target="_blank" rel="noopener noreferrer">
-              Visit Premiere Pro's official website
-            </a>
-          </p>
+      {!activeSection && (
+        <div className={`${isRefreshing ? 'fade-outwebsite' : 'fade-inwebsite'}`}>
+          <h3 className="footer-credit">This website was made by chillysauce</h3>
         </div>
-      </section>
-    </div>
-  </div>
-</section>
-)}
-
+      )}
       <button
         className={`back-to-top ${showTopButton ? '' : 'back-to-top-hidden'}`}
         onClick={(e) => {
