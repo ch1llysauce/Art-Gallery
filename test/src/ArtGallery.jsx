@@ -319,7 +319,7 @@ const ArtGallery = () => {
                 <img
                   className="interior-image1"
                   src={renderImage1}
-                  alt="Blender Render"
+                  alt="Interior 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -332,7 +332,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="interior-image2"
                   src={renderImage3}
-                  alt="Blender Render"
+                  alt="Interior 2"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -347,7 +347,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="interior-image3"
                   src={renderImage4}
-                  alt="Blender Render"
+                  alt="Interior 3"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -360,7 +360,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="interior-image4"
                   src={renderImage9}
-                  alt="Blender Render"
+                  alt="Interior 4"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -372,7 +372,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="interior-image5"
                   src={renderImage13}
-                  alt="Blender Render"
+                  alt="Interior 5"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -387,7 +387,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="interior-image6"
                   src={renderImage22}
-                  alt="Blender Render"
+                  alt="Interior 6"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -427,7 +427,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image2"
                   src={renderImage6}
-                  alt="Environmental Design 1"
+                  alt="Environmental Design 2"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -441,7 +441,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image3"
                   src={renderImage7}
-                  alt="Environmental Design 1"
+                  alt="Environmental Design 3"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -453,7 +453,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image4"
                   src={renderImage11}
-                  alt="Environmental Design 1"
+                  alt="Environmental Design 4"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -465,7 +465,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image5"
                   src={renderImage12}
-                  alt="Environmental Design 1"
+                  alt="Environmental Design 5"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -479,7 +479,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image6"
                   src={renderImage15}
-                  alt="Environmental Design 1"
+                  alt="Environmental Design 6"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -491,7 +491,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image7"
                   src={renderImage18}
-                  alt="Environmental Design 1"
+                  alt="Environmental Design 7"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -505,7 +505,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image8"
                   src={renderImage19}
-                  alt="Environmental Design 1"
+                  alt="Environmental Design 8"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -533,7 +533,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="donut-image1"
                   src={renderImage2}
-                  alt="Environmental Design 1"
+                  alt="Donut 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -545,7 +545,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="donut-image3"
                   src={renderImage20}
-                  alt="Blender Render"
+                  alt="Donut 3"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -557,7 +557,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="donut-image2"
                   src={renderImage10}
-                  alt="Blender Render"
+                  alt="Donut 2"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -596,7 +596,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="misc-image2"
                   src={renderImage14}
-                  alt="Misc 1"
+                  alt="Misc 2"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -608,7 +608,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="misc-image3"
                   src={renderImage16}
-                  alt="Misc 1"
+                  alt="Misc 3"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -622,7 +622,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="misc-image4"
                   src={renderImage17}
-                  alt="Environmental Design 1"
+                  alt="Misc 4"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -634,7 +634,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="misc-image6"
                   src={renderImage23}
-                  alt="Environmental Design 1"
+                  alt="Misc 6"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
@@ -646,7 +646,7 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="misc-image5"
                   src={renderImage21}
-                  alt="Environmental Design 1"
+                  alt="Misc 5"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
