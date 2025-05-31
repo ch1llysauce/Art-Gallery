@@ -2,61 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import './main.css';
 
 import blenderlogo from './logos/Blender_logo_no_text.svg.png';
-import aftereffectslogo from './logos/after-effects-40.png';
-import premierelogo from './logos/premiere-pro-40.png';
+import aftereffectslogo from './logos/Adobe_After_Effects.png';
+import premierelogo from './logos/Adobe_Premiere_Pro.png';
 
-import renderImage1 from './1st Render/blenderrender.png';
-
-import video1 from './2nd/0001 60 fps.mp4';
-import renderImage2 from './2nd/donut.png';
-import renderImage3 from './3rd/interior2.jpg';
-import renderImage4 from './4th/interior2.jpg';
-
-import renderImage5 from './5th/0270.png';
-import video2 from "./5th/final iceberg w mountain 1080 60.mp4"
-import renderImage6 from './6th_other planet/1/1_00000.png';
-import renderImage7 from './7th_Aurora/final_aurora.png';
-
-import renderImage8 from './8th_Earth/1800.png';
-import video3 from './8th_Earth/planet earth orig.mp4';
-
-import renderImage9 from './9th_toilet/official render.png';
-
-import renderImage10 from './10th_2nd donut/finaldonut.png';
-import video4 from './10th_2nd donut/final render.mp4';
-
-import renderImage11 from './11th_runic/official portal render.png';
-
-import renderImage12 from './12th/0420.png';
-import video5 from './12th/official forest render.mp4';
-
-import renderImage13 from './13th_int/official render.png';
-import renderImage14 from './14th_cubes/official render.png';
-
-import renderImage15 from './15th/0807.png';
-import video6 from './15th/official render.mp4';
-
-import renderImage16 from './16th/0051.png';
-import video7 from './16th/black hole.mp4';
-
-import renderImage17 from './17th/1250.png';
-import video8 from './17th/sci-fi tube.mp4';
-
-import renderImage18 from './18th_paradise/official render.png';
-
-import renderImage19 from './19th/untitled.png';
-import video9 from './19th/iceberg official render.mp4';
-
-import renderImage20 from './20th/0160.png';
-import video10 from './20th/donut 2023.mp4';
-
-import renderImage21 from './21st/0001.png';
-import video11 from './21st/OFFICIAL RENDER.mp4';
-
-import renderImage22 from './22nd/comparison.png';
-import video12 from './22nd/video.mp4';
-
-import renderImage23 from './23rd_phone/lockscreen.png';
+import { interior_images, environment_images, donut_images, misc_images } from './media.js';
+import { interior_videos, environment_videos, donut_videos, misc_videos } from './media.js';
 
 const ArtGallery = () => {
   const [activeSection, setActiveSection] = useState(null);
@@ -75,20 +25,20 @@ const ArtGallery = () => {
   const menuRef = useRef(null);
   const hamburgerRef = useRef(null);
 
-  const handleNavClick = (sectionId) => {
+  const handleNavClick = (sectionId) => { //For clicking the four buttons at the top
     if (activeSection === sectionId) return;
 
     if (activeSection !== null) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: "smooth" }); //Scroll to the top before changing sections
     }
 
-    setTimeout(() => {
+    setTimeout(() => { // Delay to ensure smooth transition
       setActiveSection(sectionId);
       setFadeKey((prev) => prev + 1);
       setMenuOpen(false);
       setImagesLoaded(false);
 
-      setTimeout(() => {
+      setTimeout(() => { // Ensure the refresh button is blurred after the section change
         const refreshBtn = document.querySelector(".refresh-button");
         refreshBtn?.blur();
       }, 250);
@@ -98,10 +48,10 @@ const ArtGallery = () => {
   const handleVideoClick = (src) => setZoomedVideo(src);
   const handleImageClick = (src) => setZoomedImage(src);
 
-  const handleRefresh = () => {
+  const handleRefresh = () => { // Refresh button
     setIsRefreshing(true);
 
-    setTimeout(() => {
+    setTimeout(() => { // Delay to allow fade-out effect
       refreshButtonRef.current?.blur();
 
       setActiveSection(null);
@@ -115,39 +65,39 @@ const ArtGallery = () => {
     }, 200);
   };
 
-  const closeZoom = () => {
+  const closeZoom = () => { // Close zoomed image or video
     setIsClosingZoom(true);
     setTimeout(() => {
       setZoomedImage(null);
       setZoomedVideo(null);
       setIsClosingZoom(false);
-    }, 300);
+    }, 300); //300 milliseconds for fade-out effect
   };
 
-  const handleImageLoad = () => {
+  const handleImageLoad = () => { // Handle image load event
     imagesToLoadRef.current -= 1;
     if (imagesToLoadRef.current <= 0) {
       setImagesLoaded(true);
     }
   };
 
-  useEffect(() => {
+  useEffect(() => { // Handle section change and apply single class to rows with one child
     const timer = setTimeout(() => {
       document
         .querySelectorAll(".image-container, .belowimage-container")
         .forEach((row) => row.classList.toggle("single", row.children.length === 1));
-    }, 100);
+    }, 100); // Delay to ensure the DOM is updated 100 milliseconds after state change
 
     return () => clearTimeout(timer);
   }, [activeSection]);
 
-  useEffect(() => {
-    const handleScroll = () => setShowTopButton(window.scrollY > 300);
+  useEffect(() => { // Handle scroll to show/hide back-to-top button
+    const handleScroll = () => setShowTopButton(window.scrollY > 300); //If y-axis is > 300px, show the button
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { // Load images and videos when the active section changes
     if (activeSection) {
       const images = document.querySelectorAll(`#${activeSection} img`);
       const videos = document.querySelectorAll(`#${activeSection} video`);
@@ -155,21 +105,21 @@ const ArtGallery = () => {
 
       if (imagesToLoadRef.current === 0) {
         setImagesLoaded(true);
-      }
+      } // If there are no images or videos, set imagesLoaded to true
     }
   }, [activeSection]);
 
-  useEffect(() => {
+  useEffect(() => { // Images are being scrolled to the top when they are loaded
     if (imagesLoaded) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [imagesLoaded]);
 
 
-  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const toggleMenu = () => setMenuOpen((prev) => !prev); //Open or close the menu
 
 
-  const handleClickOutside = (event) => {
+  const handleClickOutside = (event) => { //Close the menu when clicking outside of it
     if (menuOpen && menuRef.current && hamburgerRef.current && !menuRef.current.contains(event.target) && !hamburgerRef.current.contains(event.target)) {
       setMenuOpen(false);
     }
@@ -181,20 +131,20 @@ const ArtGallery = () => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [handleClickOutside]);
+  }, [handleClickOutside]); //Add event listener to close the menu when clicking outside of it
 
 
   useEffect(() => {
     document.body.classList.toggle("blurred", menuOpen);
     return () => document.body.classList.remove("blurred");
-  }, [menuOpen]);
+  }, [menuOpen]); // This will add a blurred effect to the body when the menu is open
 
-  const handleGenreClick = () => {
+  const handleGenreClick = () => { // Close the menu when a genre button is clicked
     setMenuOpen(false);
     document.body.classList.remove("blurred");
   };
 
-  useEffect(() => {
+  useEffect(() => { // Handle mobile responsiveness
     const handleResize = () =>
       setIsMobile(window.innerWidth <= 780);
     window.addEventListener("resize", handleResize);
@@ -206,10 +156,10 @@ const ArtGallery = () => {
       {/* Title and Description Section */}
       <section className="header" ref={headerRef}>
         <div className="intro-text">
-          <h1>Chill's 3D Art Gallery</h1>
+          <h1>Chill's Renders</h1>
           <p>
-            Welcome to Chill's Museum, where you will witness the creativity Chill has
-            made. <br /> Browse further to witness each 3D art he has created.
+            Welcome to my renders — a showcase of various 3D artworks by Chill. 
+             <br /> Browse around and explore each genre to witness each creation.
           </p>
         </div>
 
@@ -318,26 +268,26 @@ const ArtGallery = () => {
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img
                   className="interior-image1"
-                  src={renderImage1}
+                  src={interior_images.interior1}
                   alt="Interior 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleImageClick(renderImage1)
+                    handleImageClick(interior_images.interior1);
                   }}
                 />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="interior-image2"
-                  src={renderImage3}
+                  src={interior_images.interior2}
                   alt="Interior 2"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleImageClick(renderImage3);
+                    handleImageClick(interior_images.interior2);
                   }}
                 />
               </div>
@@ -346,38 +296,38 @@ const ArtGallery = () => {
             <div className="belowimage-container">
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="interior-image3"
-                  src={renderImage4}
+                  src={interior_images.interior3}
                   alt="Interior 3"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleImageClick(renderImage4);
+                    handleImageClick(interior_images.interior3);
                   }}
                 />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="interior-image4"
-                  src={renderImage9}
+                  src={interior_images.interior4}
                   alt="Interior 4"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleImageClick(renderImage9)
+                    handleImageClick(interior_images.interior4);
                   }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="interior-image5"
-                  src={renderImage13}
+                  src={interior_images.interior5}
                   alt="Interior 5"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleImageClick(renderImage13)
+                    handleImageClick(interior_images.interior5);
                   }}
                 />
               </div>
@@ -386,13 +336,13 @@ const ArtGallery = () => {
             <div className="belowimage-container">
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="interior-image6"
-                  src={renderImage22}
+                  src={interior_images.interior6}
                   alt="Interior 6"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleVideoClick(video12);
+                    handleVideoClick(interior_videos.int_video1);
                   }}
                 />
               </div>
@@ -414,25 +364,25 @@ const ArtGallery = () => {
             <div className="image-container">
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image1"
-                  src={renderImage5}
+                  src={environment_images.environment1}
                   alt="Environmental Design 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleVideoClick(video2);
+                    handleVideoClick(environment_videos.env_video1);
                   }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image2"
-                  src={renderImage6}
+                  src={environment_images.environment2}
                   alt="Environmental Design 2"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleImageClick(renderImage6);
+                    handleImageClick(environment_images.environment2);
                   }} />
               </div>
             </div>
@@ -440,37 +390,37 @@ const ArtGallery = () => {
             <div className="belowimage-container">
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image3"
-                  src={renderImage7}
+                  src={environment_images.environment3}
                   alt="Environmental Design 3"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleImageClick(renderImage7);
+                    handleImageClick(environment_images.environment3);
                   }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image4"
-                  src={renderImage11}
+                  src={environment_images.environment4}
                   alt="Environmental Design 4"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleImageClick(renderImage11);
+                    handleImageClick(environment_images.environment4);
                   }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image5"
-                  src={renderImage12}
+                  src={environment_images.environment5}
                   alt="Environmental Design 5"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleVideoClick(video5);
+                    handleVideoClick(environment_videos.env_video2);
                   }} />
               </div>
             </div>
@@ -478,25 +428,25 @@ const ArtGallery = () => {
             <div className="belowimage-container2">
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image6"
-                  src={renderImage15}
+                  src={environment_images.environment6}
                   alt="Environmental Design 6"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleVideoClick(video6);
+                    handleVideoClick(environment_videos.env_video3);
                   }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image7"
-                  src={renderImage18}
+                  src={environment_images.environment7}
                   alt="Environmental Design 7"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleImageClick(renderImage18);
+                    handleImageClick(environment_images.environment7);
                   }} />
               </div>
             </div>
@@ -504,13 +454,13 @@ const ArtGallery = () => {
             <div className="belowimage-container3">
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="environment-image8"
-                  src={renderImage19}
+                  src={environment_images.environment8}
                   alt="Environmental Design 8"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleVideoClick(video9)
+                    handleVideoClick(environment_videos.env_video4);
                   }}
                 />
               </div>
@@ -532,37 +482,37 @@ const ArtGallery = () => {
             <div className="image-container">
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="donut-image1"
-                  src={renderImage2}
+                  src={donut_images.donut1}
                   alt="Donut 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleVideoClick(video1);
+                    handleVideoClick(donut_videos.donut_video1);
                   }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="donut-image3"
-                  src={renderImage20}
+                  src={donut_images.donut3}
                   alt="Donut 3"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleVideoClick(video10);
+                    handleVideoClick(donut_videos.donut_video3);
                   }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="donut-image2"
-                  src={renderImage10}
+                  src={donut_images.donut2}
                   alt="Donut 2"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation()
-                    handleVideoClick(video4);
+                    handleVideoClick(donut_videos.donut_video2);
                   }} />
               </div>
             </div>
@@ -583,37 +533,37 @@ const ArtGallery = () => {
             <div className="image-container">
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="misc-image1"
-                  src={renderImage8}
+                  src={misc_images.misc1}
                   alt="Misc 1"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleVideoClick(video3);
+                    handleVideoClick(misc_videos.misc1);
                   }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="misc-image2"
-                  src={renderImage14}
+                  src={misc_images.misc2}
                   alt="Misc 2"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleImageClick(renderImage14);
+                    handleImageClick(misc_images.misc2);
                   }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="misc-image3"
-                  src={renderImage16}
+                  src={misc_images.misc3}
                   alt="Misc 3"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleVideoClick(video7);
+                    handleVideoClick(misc_videos.misc2);
                   }} />
               </div>
             </div>
@@ -621,37 +571,37 @@ const ArtGallery = () => {
             <div className="belowimage-container">
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="misc-image4"
-                  src={renderImage17}
+                  src={misc_images.misc4}
                   alt="Misc 4"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleVideoClick(video8);
+                    handleVideoClick(misc_videos.misc3);
                   }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="misc-image6"
-                  src={renderImage23}
+                  src={misc_images.misc6}
                   alt="Misc 6"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleImageClick(renderImage23);
+                    handleImageClick(misc_images.misc6);
                   }} />
               </div>
 
               <div className={`rendering ${imagesLoaded ? 'loaded' : 'loading'}`}>
                 <img className="misc-image5"
-                  src={renderImage21}
+                  src={misc_images.misc5}
                   alt="Misc 5"
                   onLoad={handleImageLoad}
                   onError={handleImageLoad}
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleVideoClick(video11);
+                    handleVideoClick(misc_videos.misc4);
                   }} />
               </div>
             </div>
@@ -788,7 +738,5 @@ const ArtGallery = () => {
     </div>
   );
 }
-
-//test
 
 export default ArtGallery;
