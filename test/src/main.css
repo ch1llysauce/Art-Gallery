@@ -112,7 +112,7 @@ nav {
 .button:hover {
     background: rgba(255, 255, 255, 0.2);
     border-color: #0bc3f1;
-    color: #2357c9;
+    color: #ffffff;
 }
 
 .button.active {
